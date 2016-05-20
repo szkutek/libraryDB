@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS library;
 CREATE DATABASE IF NOT EXISTS library;
 USE library;
 
-DROP TABLE IF EXISTS book, author, book_author, publisher, classification, genre,
+DROP TABLE IF EXISTS book, volume, author, book_author, publisher, classification, genre,
                      book_genre, customer, loan;
 
 CREATE TABLE book (
@@ -10,16 +10,22 @@ CREATE TABLE book (
   title VARCHAR(100) NOT NULL ,
   title_original  VARCHAR(100),
   language VARCHAR(20) NOT NULL ,
-  isbn  VARCHAR(13) ,
+  isbn  INT(13) , # VARCHAR(13)
   edition INT(3) ,
   publish_year INT(4) NOT NULL ,
   publisher_id  INT NOT NULL ,
   classification_id INT NOT NULL ,
-  status ENUM('available','checked out','ordered','lost') ,
   PRIMARY KEY (book_id),
-  FOREIGN KEY (publisher_id) REFERENCES publisher (publisher_id) ON DELETE CASCADE ,
-  FOREIGN KEY (classification_id) REFERENCES classification (classification_id) ON DELETE CASCADE ,
+  FOREIGN KEY (publisher_id) REFERENCES publisher (publisher_id) ,
+  FOREIGN KEY (classification_id) REFERENCES classification (classification_id) ,
   UNIQUE KEY (isbn)
+);
+
+CREATE TABLE volume (
+  barcode INT NOT NULL AUTO_INCREMENT ,
+  book_id INT NOT NULL ,
+  PRIMARY KEY (barcode) ,
+  FOREIGN KEY (book_id) REFERENCES book (book_id) ON DELETE CASCADE
 );
 
 CREATE TABLE author (
@@ -29,7 +35,6 @@ CREATE TABLE author (
 );
 
 CREATE TABLE book_author (
-#   book_author_id  INT NOT NULL , ????
   book_id INT NOT NULL ,
   author_id INT NOT NULL ,
   PRIMARY KEY (book_id, author_id) ,
@@ -49,18 +54,17 @@ CREATE TABLE classification ( # Dewey_Decimal_Classification OR Library_of_Congr
   classification_id INT NOT NULL AUTO_INCREMENT ,
   description VARCHAR(20) NOT NULL ,
   PRIMARY KEY (classification_id) ,
-  UNIQUE KEY (description) # <- is it necessary?
+  UNIQUE KEY (description)
 );
 
 CREATE TABLE genre (
   genre_id  INT NOT NULL AUTO_INCREMENT,
-  genre VARCHAR(20) NOT NULL , # NOT SURE ABOUT GENRE AND CLASSIFICATION
+  genre VARCHAR(20) NOT NULL ,
   PRIMARY KEY (genre_id) ,
   UNIQUE KEY (genre)
 );
 
 CREATE TABLE book_genre (
-#   book_genre_id  INT NOT NULL , ????
   book_id INT NOT NULL ,
   genre_id INT NOT NULL ,
   PRIMARY KEY (book_id, genre_id) ,
@@ -82,11 +86,11 @@ CREATE TABLE customer (
 CREATE TABLE loans (
   loan_id INT NOT NULL AUTO_INCREMENT,
   customer_id INT NOT NULL ,
-  book_id INT NOT NULL ,
+  barcode INT NOT NULL ,
   loan_date DATE  NOT NULL ,
   due_date  DATE  NOT NULL ,
   return_date DATE ,
   PRIMARY KEY (loan_id) ,
   FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE CASCADE ,
-  FOREIGN KEY (book_id) REFERENCES book (book_id) ON DELETE CASCADE
+  FOREIGN KEY (barcode) REFERENCES volume (barcode) ON DELETE CASCADE
 );
