@@ -99,16 +99,16 @@
       <file leaf-file-name="advancedQueries.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/advancedQueries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78881985">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.20866774">
+              <caret line="11" column="100" selection-start-line="11" selection-start-column="96" selection-end-line="11" selection-end-column="100" />
               <folding>
-                <marker date="1463946053303" expanded="true" signature="271:396" placeholder="SELECT autho... " />
-                <marker date="1463946053303" expanded="true" signature="271:430" placeholder="SELECT autho... " />
-                <marker date="1463946053303" expanded="true" signature="271:507" placeholder="SELECT autho... " />
-                <marker date="1463946053303" expanded="true" signature="271:589" placeholder="SELECT autho... " />
-                <marker date="1463946053303" expanded="true" signature="271:659" placeholder="SELECT autho... " />
-                <marker date="1463946053303" expanded="true" signature="271:661" placeholder="SELECT autho... " />
-                <marker date="1463946053303" expanded="true" signature="957:1433" placeholder="SELECT autho... " />
+                <marker date="1464553762644" expanded="true" signature="369:396" placeholder="SELECT autho... " />
+                <marker date="1464553762644" expanded="true" signature="369:430" placeholder="SELECT autho... " />
+                <marker date="1464553762644" expanded="true" signature="369:507" placeholder="SELECT autho... " />
+                <marker date="1464553762644" expanded="true" signature="369:589" placeholder="SELECT autho... " />
+                <marker date="1464553762644" expanded="true" signature="369:659" placeholder="SELECT autho... " />
+                <marker date="1464553762644" expanded="true" signature="369:661" placeholder="SELECT autho... " />
+                <marker date="1464553762644" expanded="true" signature="957:1433" placeholder="SELECT autho... " />
               </folding>
             </state>
           </provider>
@@ -135,8 +135,8 @@
         <option value="$PROJECT_DIR$/src/model/dataThingies.py" />
         <option value="$PROJECT_DIR$/src/model/data.py" />
         <option value="$PROJECT_DIR$/src/model/customers.py" />
-        <option value="$PROJECT_DIR$/src/model/advancedQueries.py" />
         <option value="$PROJECT_DIR$/src/utility/connector.py" />
+        <option value="$PROJECT_DIR$/src/model/advancedQueries.py" />
       </list>
     </option>
   </component>
@@ -176,7 +176,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -265,6 +264,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -515,26 +515,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26666668" sideWeight="0.49462366" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21428572" sideWeight="0.49462366" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898772" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21505377" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25873017" sideWeight="0.50537634" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21505377" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -553,6 +553,75 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="109" selection-start-line="21" selection-start-column="109" selection-end-line="21" selection-end-column="109" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utility/connector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/customers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding>
+            <marker date="1463941072931" expanded="true" signature="251:353" placeholder="INSERT INTO customer... " />
+            <marker date="1463941072931" expanded="true" signature="251:406" placeholder="INSERT INTO customer... " />
+            <marker date="1463941072931" expanded="true" signature="251:407" placeholder="INSERT INTO customer... " />
+            <marker date="1463941072931" expanded="true" signature="537:580" placeholder="DELETE FROM " />
+            <marker date="1463941072931" expanded="true" signature="537:614" placeholder="DELETE FROM " />
+            <marker date="1463941072931" expanded="true" signature="537:616" placeholder="DELETE FROM " />
+            <marker date="1463941072931" expanded="true" signature="637:713" placeholder="DELETE FROM " />
+            <marker date="1463941072931" expanded="true" signature="834:855" placeholder="DELETE FROM " />
+            <marker date="1463941072931" expanded="true" signature="993:1037" placeholder="SELECT * FRO... customers" />
+            <marker date="1463941072931" expanded="true" signature="1001:1015" placeholder="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/loans.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/advancedQueries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1464553762644" expanded="true" signature="369:396" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:430" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:507" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:589" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:659" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:661" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="957:1433" placeholder="SELECT autho... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/utility/connector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -733,16 +802,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/advancedQueries.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78881985">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.20866774">
+          <caret line="11" column="100" selection-start-line="11" selection-start-column="96" selection-end-line="11" selection-end-column="100" />
           <folding>
-            <marker date="1463946053303" expanded="true" signature="271:396" placeholder="SELECT autho... " />
-            <marker date="1463946053303" expanded="true" signature="271:430" placeholder="SELECT autho... " />
-            <marker date="1463946053303" expanded="true" signature="271:507" placeholder="SELECT autho... " />
-            <marker date="1463946053303" expanded="true" signature="271:589" placeholder="SELECT autho... " />
-            <marker date="1463946053303" expanded="true" signature="271:659" placeholder="SELECT autho... " />
-            <marker date="1463946053303" expanded="true" signature="271:661" placeholder="SELECT autho... " />
-            <marker date="1463946053303" expanded="true" signature="957:1433" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:396" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:430" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:507" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:589" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:659" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="369:661" placeholder="SELECT autho... " />
+            <marker date="1464553762644" expanded="true" signature="957:1433" placeholder="SELECT autho... " />
           </folding>
         </state>
       </provider>
