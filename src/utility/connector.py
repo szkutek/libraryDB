@@ -20,8 +20,8 @@ class DBConnector:
         self.connection.commit()
         cursor.close()
 
-    def searchQuery(self,query,parameters):
+    def searchQuery(self, query, parameters):
         cursor = self.connection.cursor()
         cursor.execute(query, parameters)
-        # self.connection.commit()
+        #self.connection.commit()
         return cursor

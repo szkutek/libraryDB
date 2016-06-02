@@ -8,12 +8,12 @@ class Customer:
 
     def register(self, parameters):
         query = (
-            "INSERT INTO customers (customer_barcode, name, address, birthdate, phone_no, email, registration_date) "
-            "VALUES (%s, %s, %s, %s, %s, %s, NOW())")
+            "INSERT INTO customers (customer_barcode, name, address, birth_date, phone_no, email, registration_date) "
+            "VALUES (%s, %s, %s, %s, %s, %s, curdate())")
         self.dbConnector.executeQuery(query=query, parameters=parameters)
 
     def delete(self, parameters):
-        query = ("DELETE FROM customers WHERE name REGEXP '%s' AND customer_barcode REGEXP '%s'")
+        query = ("DELETE FROM customers WHERE name REGEXP '%s' AND customer_barcode REGEXP %s")
         # query = ("DELETE FROM customer WHERE name LIKE '%%s%' AND customer_barcode LIKE '%%s%'")
         self.dbConnector.executeQuery(query=query, parameters=parameters)
 

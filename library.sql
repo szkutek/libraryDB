@@ -10,7 +10,7 @@ CREATE TABLE customers (
   customer_id       INT          NOT NULL AUTO_INCREMENT,
   customer_barcode  INT          NOT NULL,
   name              VARCHAR(40)  NOT NULL,
-  birthdate         DATE         NOT NULL,
+  birth_date        DATE         NOT NULL,
   address           VARCHAR(100) NOT NULL,
   phone_no          VARCHAR(11),
   email             VARCHAR(40),
@@ -19,21 +19,21 @@ CREATE TABLE customers (
 );
 
 CREATE TABLE authors (
-  author_id INT         NOT NULL AUTO_INCREMENT,
-  first_name      VARCHAR(50) NOT NULL,
-  last_name      VARCHAR(50) NOT NULL,
+  author_id  INT         NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(50) NOT NULL,
+  last_name  VARCHAR(50) NOT NULL,
   PRIMARY KEY (author_id)
 );
 
 CREATE TABLE publishers (
   publisher_id INT         NOT NULL AUTO_INCREMENT,
-  publisher         VARCHAR(50) NOT NULL,
+  publisher    VARCHAR(50) NOT NULL,
   address      VARCHAR(50),
   PRIMARY KEY (publisher_id),
   UNIQUE KEY (publisher)
 );
 
-CREATE TABLE classifications (# Dewey_Decimal_Classification OR Library_of_Congress_Classification
+CREATE TABLE classifications (
   classification_id INT         NOT NULL AUTO_INCREMENT,
   description       VARCHAR(20) NOT NULL,
   PRIMARY KEY (classification_id),
@@ -49,12 +49,11 @@ CREATE TABLE genres (
 
 CREATE TABLE books (
   book_id           INT          NOT NULL AUTO_INCREMENT,
-  author_id         INT          NOT NULL ,
+  author_id         INT          NOT NULL,
   title             VARCHAR(100) NOT NULL,
   title_original    VARCHAR(100),
-  language          VARCHAR(20)  NOT NULL,
-  isbn              VARCHAR(13),
-  edition           INT(3),
+  language          ENUM ('Polish', 'English', 'Other'),
+  isbn              INT(13),
   publish_year      INT(4)       NOT NULL,
   publisher_id      INT          NOT NULL,
   classification_id INT          NOT NULL,
@@ -69,7 +68,7 @@ CREATE TABLE volumes (
   volume_id INT NOT NULL AUTO_INCREMENT,
   barcode   INT NOT NULL,
   book_id   INT NOT NULL,
-  aquired   DATE,
+  acquired  DATE,
   PRIMARY KEY (volume_id),
   FOREIGN KEY (book_id) REFERENCES books (book_id)
     ON DELETE CASCADE
@@ -99,52 +98,51 @@ CREATE TABLE loans (
     ON DELETE CASCADE
 );
 
-# CREATE OR REPLACE VIEW book_genres_display AS
-#   SELECT title, GROUP_CONCAT(DISTINCT genre ORDER BY genre ASC SEPARATOR ', ') FROM
-#     books JOIN book_genres USING (book_id)
-#   JOIN genres USING (genre_id);
 
 CREATE OR REPLACE VIEW available_volumes AS
-  SELECT book_id, volume_id FROM volumes
-        WHERE
-          volume_id NOT IN (SELECT volume_id FROM loans)
-        OR volume_id IN (SELECT volume_id AS ID_available FROM loans
-                           WHERE return_date IS NOT NULL)
+  SELECT
+    book_id,
+    volume_id
+  FROM volumes
+  WHERE
+    volume_id NOT IN (SELECT volume_id
+                      FROM loans)
+    OR volume_id IN (SELECT volume_id AS ID_available
+                     FROM loans
+                     WHERE return_date IS NOT NULL)
   ORDER BY book_id;
 
-CREATE OR REPLACE VIEW availability AS
-  SELECT books.title,
-      CONCAT_WS('/', COUNT(volume_id), all_volumes) AS `available/all`
-    FROM books
-    JOIN available_volumes
-      ON books.book_id = available_volumes.book_id
-    JOIN (SELECT book_id, COUNT(*) as all_volumes FROM volumes GROUP BY book_id) allVols
-      ON books.book_id=allVols.book_id
-  GROUP BY books.book_id;
-
 CREATE OR REPLACE VIEW typical_search_query AS
-  SELECT authors.last_name, authors.first_name, title, title_original, language, publish_year, publisher, isbn
+  SELECT
+    authors.last_name,
+    authors.first_name,
+    title,
+    title_original,
+    language,
+    publish_year,
+    publisher,
+    isbn
   FROM books
     JOIN authors USING (author_id)
     JOIN publishers ON publishers.publisher_id = books.publisher_id;
 
 
 INSERT INTO classifications (description) VALUES ('fiction');
-INSERT INTO genres (genre) VALUES ('fantasy'), ('science fiction'),('detective novel');
-INSERT INTO authors (first_name, last_name) VALUES ('Isaac', 'Asimov'),('Arthur Conan', 'Doyle');
+INSERT INTO genres (genre) VALUES ('fantasy'), ('science fiction'), ('detective novel');
+INSERT INTO authors (first_name, last_name) VALUES ('Isaac', 'Asimov'), ('Arthur Conan', 'Doyle');
 INSERT INTO publishers (publisher, address) VALUES ('Something', 'New York, USA');
-INSERT INTO customers (customer_barcode, name, birthdate, address, phone_no, email, registration_date)
-VALUES ('1','Agnieszka Szkutek', '1994-08-04', 'bla, bla', '1234', 'email', curdate());
-INSERT INTO books (author_id, title, title_original, language, isbn, edition, publish_year, publisher_id, classification_id)
-VALUES ('1','Robots','','English','1234','1','1951','1','1'),
-  ('1','Foundation','','English','12345','1','1970','1','1'),
-  ('2','A Study in Scarlet','','English','123','5','1970','1','1');
-INSERT INTO book_genres (book_id, genre_id) VALUES ('1','1'),('1','2'),('2','2'),('3','3');
-INSERT INTO volumes (barcode, book_id, aquired) VALUES
-  (1,'1','1960-1-1'),(2,'1','2000-1-1'),(3,'1','1990-1-1'),
-  (4,'2','1960-1-1'),(5,'2','2000-1-1'),(6,'2','1990-1-1'),
-  (7,'2','1960-1-1'),(8,'3','2000-1-1'),(9,'3','1990-1-1');
+INSERT INTO customers (customer_barcode, name, birth_date, address, phone_no, email, registration_date)
+VALUES ('1', 'Agnieszka Szkutek', '1994-08-04', 'bla, bla', '1234', 'email', curdate());
+INSERT INTO books (author_id, title, title_original, language, isbn, publish_year, publisher_id, classification_id)
+VALUES ('1', 'Robots', '', 'English', '1234', '1951', '1', '1'),
+  ('1', 'Foundation', '', 'English', '12345', '1970', '1', '1'),
+  ('2', 'A Study in Scarlet', '', 'English', '123', '1970', '1', '1');
+INSERT INTO book_genres (book_id, genre_id) VALUES ('1', '1'), ('1', '2'), ('2', '2'), ('3', '3');
+INSERT INTO volumes (barcode, book_id, acquired) VALUES
+  (1, '1', '1960-1-1'), (2, '1', '2000-1-1'), (3, '1', '1990-1-1'),
+  (4, '2', '1960-1-1'), (5, '2', '2000-1-1'), (6, '2', '1990-1-1'),
+  (7, '2', '1960-1-1'), (8, '3', '2000-1-1'), (9, '3', '1990-1-1');
 INSERT INTO loans (customer_id, volume_id, loan_date, due_date, return_date)
-  VALUES ('1','1', curdate(), ADDDATE(curdate(),31), NULL),
-  ('1','3', '2016-3-4', ADDDATE('2016-3-4',30), '2016-4-30'),
-  ('1','9', '2016-4-4', ADDDATE('2016-4-4',30), NULL);
+VALUES ('1', '1', curdate(), ADDDATE(curdate(), 31), NULL),
+  ('1', '3', '2016-3-4', ADDDATE('2016-3-4', 30), '2016-4-30'),
+  ('1', '9', '2016-4-4', ADDDATE('2016-4-4', 30), NULL);
