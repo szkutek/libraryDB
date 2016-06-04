@@ -12,6 +12,5 @@ class Status(Gtk.TextView):
         self.set_cursor_visible(False)
 
         self.set_justification(Gtk.Justification.LEFT)
-        self.modify_bg(Gtk.StateType.NORMAL, Gdk.Color(65535, 65535, 65535))
-
-        # self.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0.0, 6500.0, 0.0))
+        # self.modify_bg(Gtk.StateType.NORMAL, Gdk.Color(65535, 65535, 65535))
+        self.modify_bg(Gtk.StateType.NORMAL, Gdk.Color(45535, 45535, 45535))

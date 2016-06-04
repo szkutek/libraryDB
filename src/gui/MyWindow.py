@@ -5,8 +5,9 @@ from gi.repository import Gtk
 
 from RegisterPage import RegisterPage
 from AddPage import AddPage
-from  src.model.Library import Library
+from src.model.Library import Library
 from src.utility.connector import DBConnector
+from LoansPage import LoansPage
 
 
 class MyWindow(Gtk.Window):
@@ -22,7 +23,7 @@ class MyWindow(Gtk.Window):
         self.add(self.notebook)
 
         self.addPage = AddPage()
-        self.addPage.utilities.buttonAuthor.connect("clicked",self.run)
+        self.addPage.utilities.buttonAuthor.connect("clicked", self.run)
 
         self.addUtiPage = Gtk.Box()
         self.addUtiPage.set_border_width(10)
@@ -36,10 +37,12 @@ class MyWindow(Gtk.Window):
         self.registerPage.add(self.regPage)
         self.notebook.append_page(self.registerPage, Gtk.Label('Register'))
 
-        self.updatePage = Gtk.Box()
-        self.updatePage.set_border_width(10)
-        self.updatePage.add(Gtk.Label('Loans:'))
-        self.notebook.append_page(self.updatePage, Gtk.Label('Loans'))
+        self.loansPage = LoansPage()
+
+        self.loanPage = Gtk.Box()
+        self.loanPage.set_border_width(10)
+        self.loanPage.add(self.loansPage)
+        self.notebook.append_page(self.loanPage, Gtk.Label('Loans'))
 
         self.searchPage = Gtk.Box()
         self.searchPage.set_border_width(10)
@@ -51,7 +54,7 @@ class MyWindow(Gtk.Window):
         self.newAndPop.add(Gtk.Label('NEW AND POPULAR:'))
         self.notebook.append_page(self.newAndPop, Gtk.Label('New and popular books'))
 
-    def run(self,x):
+    def run(self, x):
         cursor = self.library.advQuery.advanced(parameters=('asi', 'asi', 'found', 1970, 's', '12345'))
         result = "Executed query: {query}\nResult:\n"
         for (author, title, publish_year, language, publisher, available) in cursor:
@@ -60,6 +63,7 @@ class MyWindow(Gtk.Window):
                     publisher) + ',' + str(available))
         buff = self.addPage.status.get_buffer()
         buff.set_text(result)
+
 
 win = MyWindow()
 win.connect("delete-event", Gtk.main_quit)

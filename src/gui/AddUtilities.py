@@ -12,7 +12,6 @@ class AddUtilities(Gtk.Box):
         self.set_border_width(10)
 
         self.label = Gtk.Label("ADD NEW AUTHOR / PUBLISHER / GENRE / CLASSIFICATION")
-        self.label2 = Gtk.Label(" ")
 
         self.authorLabel = Gtk.Label("Add author:")
         self.authorName = Gtk.Entry()

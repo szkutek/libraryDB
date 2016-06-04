@@ -2,7 +2,9 @@ import gi
 
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, Gdk
-from Status import Status
+
+
+# from Status import Status
 
 
 class RegisterPage(Gtk.Box):
@@ -12,7 +14,8 @@ class RegisterPage(Gtk.Box):
         self.set_spacing(10)
         self.set_border_width(10)
 
-        self.label = Gtk.Label("REGISTER NEW CUSTOMER")
+        self.label = Gtk.Label()
+        self.label.set_markup("<b>REGISTER NEW CUSTOMER</b>")
         self.label2 = Gtk.Label(" ")
 
         self.nameLabel = Gtk.Label("Name:")
@@ -58,8 +61,16 @@ class RegisterPage(Gtk.Box):
         self.valuesBox.pack_start(self.email, False, False, 0)
         self.valuesBox.pack_start(self.button, False, False, 0)
 
-        self.statusBox = Status()
+        self.statusBox = Gtk.VBox(spacing=10)
         self.add(self.statusBox)
-        #
-        # self.status =
+
+        self.status = Gtk.TextView()
+        self.statusBox.pack_start(self.status, True, True, 0)
+
+        # self.set_editable(False)
+        # self.set_cursor_visible(False)
+
+        self.status.set_justification(Gtk.Justification.LEFT)
+        self.status.modify_bg(Gtk.StateType.NORMAL, Gdk.Color(45535, 45535, 45535))
+
         # self.statusBox.pack_start(self.status, True, True, 10)
