@@ -1,6 +1,6 @@
 # 1.  Wyszukiwanie proste dla podanej frazy, np 'asimov' + pokazanie ilości dostępnych egzemplarzy.
 # W pythonie pętla bedzie przechodziła po każdym słowie z zapytania i wypluwała wszystkie pasujące wyniki.
-# Dodatkowo będzie można zawęzić poszukiwania wybierając język oraz przedział, w jakim książka
+# Dodatkowo będzie można zawęzić poszukiwania wybierając język oraz przedział czasowy, w jakim książka
 # została wydana.
 
 SET @zapytanie = 'asimov'; # będzie można wybrać z listy rozwijanej jakiego pola to dotyczy np autor/ tytuł
@@ -69,7 +69,7 @@ WHERE (genre = @genre1 OR genre = @genre2)
       AND books.title REGEXP @title;
 
 
-# 4. Najbardziej popularny tytuł (z uwzględnieniem autora i/lub gatunku
+# 4. Najbardziej popularny tytuł (z uwzględnieniem autora i/lub gatunku)
 
 # tytuł
 SELECT

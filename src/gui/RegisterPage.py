@@ -1,10 +1,9 @@
 import gi
 
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk, Gdk
-
-
-# from Status import Status
+from gi.repository import Gtk
+from Register import Register
+from Status import Status
 
 
 class RegisterPage(Gtk.Box):
@@ -14,63 +13,11 @@ class RegisterPage(Gtk.Box):
         self.set_spacing(10)
         self.set_border_width(10)
 
-        self.label = Gtk.Label()
-        self.label.set_markup("<b>REGISTER NEW CUSTOMER</b>")
-        self.label2 = Gtk.Label(" ")
+        self.set_homogeneous(True)
 
-        self.nameLabel = Gtk.Label("Name:")
-        self.name = Gtk.Entry()
-        self.name.set_max_length(40)
+        self.register = Register()
+        self.add(self.register)
 
-        self.addressLabel = Gtk.Label("Address:")
-        self.address = Gtk.Entry()
-        self.address.set_max_length(100)
+        self.status = Status()
+        self.add(self.status)
 
-        self.birthDateLabel = Gtk.Label("Birth date:")
-        self.birthDate = Gtk.Entry()
-
-        self.phoneNoLabel = Gtk.Label("Phone number:")
-        self.phoneNo = Gtk.Entry()
-        self.phoneNo.set_max_length(11)
-
-        self.emailLabel = Gtk.Label("Email address:")
-        self.email = Gtk.Entry()
-        self.email.set_max_length(40)
-
-        self.buttonLabel = Gtk.Label(" ")
-        self.button = Gtk.Button(label="REGISTER")
-
-        padding = 7
-        self.labelBox = Gtk.VBox(spacing=8)
-        # self.labelBox.set_homogeneous(True)
-        self.add(self.labelBox)
-        self.labelBox.pack_start(self.label, False, True, padding)
-        self.labelBox.pack_start(self.nameLabel, False, True, padding)
-        self.labelBox.pack_start(self.addressLabel, False, True, padding)
-        self.labelBox.pack_start(self.birthDateLabel, False, True, padding)
-        self.labelBox.pack_start(self.phoneNoLabel, False, True, padding)
-        self.labelBox.pack_start(self.emailLabel, False, True, padding)
-
-        self.valuesBox = Gtk.VBox(spacing=10)
-        self.add(self.valuesBox)
-        self.valuesBox.pack_start(self.label2, False, False, padding)
-        self.valuesBox.pack_start(self.name, False, False, 0)
-        self.valuesBox.pack_start(self.address, False, False, 0)
-        self.valuesBox.pack_start(self.birthDate, False, True, 0)
-        self.valuesBox.pack_start(self.phoneNo, False, False, 0)
-        self.valuesBox.pack_start(self.email, False, False, 0)
-        self.valuesBox.pack_start(self.button, False, False, 0)
-
-        self.statusBox = Gtk.VBox(spacing=10)
-        self.add(self.statusBox)
-
-        self.status = Gtk.TextView()
-        self.statusBox.pack_start(self.status, True, True, 0)
-
-        # self.set_editable(False)
-        # self.set_cursor_visible(False)
-
-        self.status.set_justification(Gtk.Justification.LEFT)
-        self.status.modify_bg(Gtk.StateType.NORMAL, Gdk.Color(45535, 45535, 45535))
-
-        # self.statusBox.pack_start(self.status, True, True, 10)

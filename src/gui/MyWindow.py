@@ -8,6 +8,8 @@ from AddPage import AddPage
 from src.model.Library import Library
 from src.utility.connector import DBConnector
 from LoansPage import LoansPage
+from SearchPage import SearchPage
+from NewAndPopularPage import NewAndPopularPage
 
 
 class MyWindow(Gtk.Window):
@@ -22,36 +24,40 @@ class MyWindow(Gtk.Window):
         self.notebook = Gtk.Notebook()
         self.add(self.notebook)
 
-        self.addPage = AddPage()
-        self.addPage.utilities.buttonAuthor.connect("clicked", self.run)
+        self.addPg = AddPage()
+        self.addPg.utilities.buttonAuthor.connect("clicked", self.run)
 
         self.addUtiPage = Gtk.Box()
         self.addUtiPage.set_border_width(10)
-        self.addUtiPage.add(self.addPage)
+        self.addUtiPage.add(self.addPg)
         self.notebook.append_page(self.addUtiPage, Gtk.Label("Add"))
 
-        self.regPage = RegisterPage()
+        self.registerPg = RegisterPage()
 
         self.registerPage = Gtk.Box()
         self.registerPage.set_border_width(10)
-        self.registerPage.add(self.regPage)
+        self.registerPage.add(self.registerPg)
         self.notebook.append_page(self.registerPage, Gtk.Label('Register'))
 
-        self.loansPage = LoansPage()
+        self.loansPg = LoansPage()
 
         self.loanPage = Gtk.Box()
         self.loanPage.set_border_width(10)
-        self.loanPage.add(self.loansPage)
+        self.loanPage.add(self.loansPg)
         self.notebook.append_page(self.loanPage, Gtk.Label('Loans'))
+
+        self.searchPg = SearchPage()
 
         self.searchPage = Gtk.Box()
         self.searchPage.set_border_width(10)
-        self.searchPage.add(Gtk.Label('Search'))
+        self.searchPage.add(self.searchPg)
         self.notebook.append_page(self.searchPage, Gtk.Label('Search'))
+
+        self.newAndPopular = NewAndPopularPage()
 
         self.newAndPop = Gtk.Box()
         self.newAndPop.set_border_width(10)
-        self.newAndPop.add(Gtk.Label('NEW AND POPULAR:'))
+        self.newAndPop.add(self.newAndPopular)
         self.notebook.append_page(self.newAndPop, Gtk.Label('New and popular books'))
 
     def run(self, x):

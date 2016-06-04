@@ -6,16 +6,24 @@ from Rent import Rent
 from Return import Return
 from Status import Status
 
-class LoansPage(Gtk.Grid):
+
+class LoansPage(Gtk.VBox):
     def __init__(self):
-        Gtk.Grid.__init__(self)
-        self.set_row_spacing(5)
-        self.set_column_spacing(20)
+        Gtk.VBox.__init__(self)
+        # self.set_row_spacing(5)
+        # self.set_column_spacing(20)
+        self.set_spacing(10)
+        self.set_border_width(10)
+
+        self.set_homogeneous(True)
 
         self.rents = Rent()
         self.returns = Return()
         self.status = Status()
 
-        self.attach(self.rents, 0, 0, 1, 1)
-        self.attach(self.returns, 0, 1, 1, 1)
-        self.attach(self.status, 1, 1, 1, 2)
+        self.loansBox = Gtk.Box()
+        self.add(self.loansBox)
+        self.loansBox.add(self.rents)
+        self.loansBox.add(self.returns)
+
+        self.add(self.status)

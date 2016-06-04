@@ -52,7 +52,7 @@ CREATE TABLE books (
   author_id         INT          NOT NULL,
   title             VARCHAR(100) NOT NULL,
   title_original    VARCHAR(100),
-  language          ENUM ('Polish', 'English', 'Other'),
+  language          ENUM ('Polish', 'English', 'German', 'Russian', 'Other'),
   isbn              INT(13),
   publish_year      INT(4)       NOT NULL,
   publisher_id      INT          NOT NULL,
