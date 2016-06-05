@@ -35,7 +35,7 @@ class AddBook(Gtk.Box):
         self.bookPublisherLabel = Gtk.Label("Publisher:")
         self.bookPublisher = Gtk.Entry()  # COMBO BOX
 
-        self.bookYearLabel = Gtk.Label("Published:")
+        self.bookYearLabel = Gtk.Label("Publish year:")
         self.bookYear = Gtk.Entry()
 
         self.bookClassLabel = Gtk.Label("Choose classification:")
@@ -46,6 +46,7 @@ class AddBook(Gtk.Box):
 
         self.buttonAddBookLabel = Gtk.Label(" ")
         self.buttonAddBook = Gtk.Button(label="ADD BOOK")
+        self.buttonAddBook.connect("clicked", self.addBook)
 
         padding = 7
         self.labelBox = Gtk.VBox(spacing=8)
@@ -76,3 +77,17 @@ class AddBook(Gtk.Box):
         self.valuesBox.pack_start(self.bookClass, False, False, 0)
         self.valuesBox.pack_start(self.bookGenre, False, False, 0)
         self.valuesBox.pack_start(self.buttonAddBook, False, False, 0)
+
+    def addBook(self, button):
+        # author, title, original
+        # title, language, isbn, publisher,
+        # year, classification, genres
+        author = self.bookAuthor.get_text()
+        title = self.bookTitle.get_text()
+        language = self.bookLanguage.get_text()
+        isbn = self.bookIsbn.get_text()
+        publisher = self.bookPublisher.get_text()
+        year = self.bookYear.get_text()
+        classification = self.bookClass.get_text()
+        genre = str(self.bookGenre.get_text())
+        genres = genre.split(',')

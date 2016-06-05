@@ -3,10 +3,10 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
-from RegisterPage import RegisterPage
-from AddPage import AddPage
 from src.model.Library import Library
 from src.utility.connector import DBConnector
+from RegisterPage import RegisterPage
+from AddPage import AddPage
 from LoansPage import LoansPage
 from SearchPage import SearchPage
 from NewAndPopularPage import NewAndPopularPage
@@ -67,7 +67,7 @@ class MyWindow(Gtk.Window):
             result += (
                 str(author) + ',' + str(title) + ',' + str(publish_year) + ',' + str(language) + ',' + str(
                     publisher) + ',' + str(available))
-        buff = self.addPage.status.get_buffer()
+        buff = self.addPg.status.textView.get_buffer()
         buff.set_text(result)
 
 

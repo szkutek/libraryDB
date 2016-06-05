@@ -29,7 +29,6 @@ class SimpleSearch(Gtk.Box):
 
         padding = 7
         self.labelBox = Gtk.VBox(spacing=8)
-        self.labelBox.set_homogeneous(True)
         self.add(self.labelBox)
         self.labelBox.pack_start(self.label, False, True, padding)
         self.labelBox.pack_start(self.simpleSearchLabel, False, True, padding)

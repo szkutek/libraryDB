@@ -15,7 +15,8 @@ CREATE TABLE customers (
   phone_no          VARCHAR(11),
   email             VARCHAR(40),
   registration_date DATE         NOT NULL,
-  PRIMARY KEY (customer_id)
+  PRIMARY KEY (customer_id),
+  UNIQUE KEY (customer_barcode)
 );
 
 CREATE TABLE authors (
@@ -111,20 +112,6 @@ CREATE OR REPLACE VIEW available_volumes AS
                      FROM loans
                      WHERE return_date IS NOT NULL)
   ORDER BY book_id;
-
-CREATE OR REPLACE VIEW typical_search_query AS
-  SELECT
-    authors.last_name,
-    authors.first_name,
-    title,
-    title_original,
-    language,
-    publish_year,
-    publisher,
-    isbn
-  FROM books
-    JOIN authors USING (author_id)
-    JOIN publishers ON publishers.publisher_id = books.publisher_id;
 
 
 INSERT INTO classifications (description) VALUES ('fiction');

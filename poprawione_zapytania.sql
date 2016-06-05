@@ -45,29 +45,31 @@ WHERE (last_name REGEXP @author OR first_name REGEXP @author)
       AND publisher REGEXP @publisher
       AND isbn = @isbn;
 
-# 3. Wykaz nowości, zawężenie do kilku działów/tematyki, zawężenie do języka,
+# 3. Wykaz nowości, zawężenie do działu/tematyki, zawężenie do języka,
 # można wybrać rok wydania / rok przyjęcia do księgozbioru (do kilku lat wstecz, z listy rozwijanej)
-SELECT *
-FROM books;
-SET @title='f';
-SET @genre1 = 'fantasy', @genre2 = 'science fiction', @lang = 'English', @rok_dod = 2000, @rok_wyd = 1970;
-
+SET @genre = 'science fiction', @lang = 'English', @rok_dod = 2000, @rok_wyd = 1951;
+#  publish_year = ANY (SELECT publish_year FROM books);
 SELECT
-  authors.last_name,
+  CONCAT_WS(', ', last_name, first_name) AS author,
   title,
   publish_year,
-  genre
+  genres_concatenated
 FROM books
   JOIN authors USING (author_id)
   JOIN volumes USING (book_id)
+  JOIN (SELECT
+          book_id,
+          GROUP_CONCAT(DISTINCT genre ORDER BY genre ASC SEPARATOR ', ') genres_concatenated
+        FROM book_genres
+          JOIN genres USING (genre_id)
+        GROUP BY book_id) genres_conc
+    ON books.book_id = genres_conc.book_id
   JOIN book_genres ON books.book_id = book_genres.book_id
   JOIN genres USING (genre_id)
-WHERE (genre = @genre1 OR genre = @genre2)
+WHERE genre = @genre
       AND language = @lang
       AND YEAR(acquired) = @rok_dod
-      AND publish_year = @rok_wyd
-      AND books.title REGEXP @title;
-
+      AND publish_year = @rok_wyd;
 
 # 4. Najbardziej popularny tytuł (z uwzględnieniem autora i/lub gatunku)
 

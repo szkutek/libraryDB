@@ -31,13 +31,12 @@ class PopularBooks(Gtk.Box):
 
         padding = 7
         self.labelBox = Gtk.VBox(spacing=8)
-        self.labelBox.set_homogeneous(True)
         self.add(self.labelBox)
         self.labelBox.pack_start(self.label, False, True, padding)
         self.labelBox.pack_start(self.authorLabel, False, True, padding)
         self.labelBox.pack_start(self.genreLabel, False, True, padding)
         self.labelBox.pack_start(self.popularSinceLabel, False, True, padding)
-        self.labelBox.pack_start(self.default, False, True, 0)
+        self.labelBox.pack_start(self.default, False, False, 2)
 
         self.valuesBox = Gtk.VBox(spacing=10)
         self.add(self.valuesBox)
