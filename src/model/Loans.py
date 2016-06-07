@@ -3,12 +3,11 @@ class Loans:
         self.dbConnector = dbc
 
     def rentBook(self, parameters):
-        query = ("CALL RentBook(%s, %s);")
-        self.dbConnector.executeQuery(query=query, parameters=parameters)
+        self.dbConnector.callProcedure('RentBook', parameters=parameters)
 
     def returnBook(self, parameters):
-        query = ("CALL ReturnBook(%s);")
-        self.dbConnector.executeQuery(query=query, parameters=parameters)
+        # query = ("CALL ReturnBook(%s);")
+        self.dbConnector.callProcedure('ReturnBook', parameters=parameters)
 
         # def renew(self, parameters):
         #     query = (" ")

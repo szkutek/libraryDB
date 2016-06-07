@@ -29,10 +29,11 @@ class DBConnector:
         except Exception as e:
             print(e)
 
-    def executeQuery(self, query, parameters):
+    def executeQuery(self, query, parameters, multi):
+        # query, parameters, multi
         try:
             print("calling " + query + " with " + repr(parameters))
-            self.cursor.execute(query, parameters)
+            self.cursor.execute(query, parameters, multi)
             self.connection.commit()
         except Exception as e:
             print(e)

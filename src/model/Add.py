@@ -19,19 +19,19 @@ class Add:
 
     def author(self, parameters):
         query = ("INSERT INTO authors (first_name, last_name) VALUES (%s, %s);")
-        self.dbConnector.executeQuery(query=query, parameters=parameters)
+        self.dbConnector.executeQuery(query=query, parameters=parameters, multi=False)
 
     def publisher(self, parameters):
         query = ("INSERT INTO publishers (publisher, address) VALUES (%s, %s);")
-        self.dbConnector.executeQuery(query=query, parameters=parameters)
+        self.dbConnector.executeQuery(query=query, parameters=parameters, multi=False)
 
     def classification(self, parameters):
         query = ("INSERT INTO classifications (description) VALUES (%s);")
-        self.dbConnector.executeQuery(query=query, parameters=parameters)
+        self.dbConnector.executeQuery(query=query, parameters=parameters, multi=False)
 
     def genre(self, parameters):
         query = ("INSERT INTO genres (genre) VALUES (%s);")
-        self.dbConnector.executeQuery(query=query, parameters=parameters)
+        self.dbConnector.executeQuery(query=query, parameters=parameters, multi=False)
 
         # def delete(self, type, parameters):
         #     query = (" ")

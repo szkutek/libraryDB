@@ -36,5 +36,5 @@ class Return(Gtk.Box):
         self.valuesBox.pack_start(self.button, False, False, 0)
 
     def returnBook(self, button):
-        volumeBarcode = str(self.volumeBarcode.get_text())
-        self.library.loans.returnBook(parameters=volumeBarcode)
+        volumeBarcode = int(self.volumeBarcode.get_text())
+        self.library.loans.returnBook(parameters=(volumeBarcode,))

@@ -23,24 +23,7 @@ class Query:
         return results
 
     def advanced(self, parameters):
-        query = (
-            "SELECT "
-            "last_name author,"
-            "title,"
-            "publish_year,"
-            "language,"
-            "publisher,"
-            "COUNT(volume_id) available "
-            "FROM books "
-            "JOIN authors USING (author_id) "
-            "JOIN available_volumes ON books.book_id = available_volumes.book_id "
-            "JOIN publishers USING (publisher_id) "
-            "WHERE (last_name REGEXP %s OR first_name REGEXP %s)"
-            "AND title REGEXP %s "
-            "AND publish_year = %s "
-            "AND publisher REGEXP %s "
-            "AND isbn = %s; ")
-
+        query = ("")
         res = self.dbConnector.searchQuery(query=query, parameters=parameters)
         return res
 

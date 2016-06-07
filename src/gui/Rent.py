@@ -45,6 +45,6 @@ class Rent(Gtk.Box):
         self.valuesBox.pack_start(self.button, False, False, 0)
 
     def rentBook(self, button):
-        customerBarcode = str(self.customerBarcode.get_text())
-        volumeBarcode = str(self.volumeBarcode.get_text())
+        customerBarcode = int(self.customerBarcode.get_text())
+        volumeBarcode = int(self.volumeBarcode.get_text())
         self.library.loans.rentBook(parameters=(customerBarcode, volumeBarcode))

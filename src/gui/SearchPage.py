@@ -8,15 +8,16 @@ from Status import Status
 
 
 class SearchPage(Gtk.Box):
-    def __init__(self):
+    def __init__(self, lib):
         Gtk.Box.__init__(self)
+        self.library = lib
 
         self.set_spacing(10)
         self.set_border_width(10)
 
         self.set_homogeneous(True)
 
-        self.simpleSearch = SimpleSearch()
+        self.simpleSearch = SimpleSearch(self.library)
         self.advSearch = AdvancedSearch()
         self.status = Status()
 

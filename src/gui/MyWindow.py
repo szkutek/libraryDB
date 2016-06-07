@@ -46,7 +46,7 @@ class MyWindow(Gtk.Window):
         self.loanPage.add(self.loansPg)
         self.notebook.append_page(self.loanPage, Gtk.Label('Loans'))
 
-        self.searchPg = SearchPage()
+        self.searchPg = SearchPage(lib=self.library)
 
         self.searchPage = Gtk.Box()
         self.searchPage.set_border_width(10)
@@ -69,6 +69,8 @@ class MyWindow(Gtk.Window):
                     publisher) + ',' + str(available))
         buff = self.addPg.status.textView.get_buffer()
         buff.set_text(result)
+
+        # self.library
 
 
 win = MyWindow()
