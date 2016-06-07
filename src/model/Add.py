@@ -3,14 +3,19 @@ class Add:
         self.dbConnector = dbc
 
     def book(self, parameters):
-        query = ("INSERT INTO books "
-                 "(author_id, title, title_original, language, isbn, publish_year, publisher_id, classification_id) "
-                 "VALUES ( %s, %s, %s, %s, %s, %s, %s, %s);")
-        self.dbConnector.executeQuery(query=query, parameters=parameters)
+        # in param = author name, surname, title, title_orig, language, isbn, publish_year, publisher, class
+        # query = ("CALL AddBook( %s, %s, %s, %s, %s, %s, %s, %s, %s);")
+        # self.dbConnector.executeQuery(query=query, parameters=parameters)
+        self.dbConnector.callProcedure('AddBook', parameters=parameters)
 
     def genreToBook(self, parameters):
-        query = ("CALL AddGenreToBook( %s, %s);")
-        self.dbConnector.executeQuery(query=query, parameters=parameters)
+        # query = ("CALL AddGenreToBook( %s, %s);")
+        # self.dbConnector.executeQuery(query=query, parameters=parameters)
+        self.dbConnector.callProcedure('AddGenreToBook', parameters=parameters)
+
+    def volume(self, parameters):
+        # query = ("CALL AddVolume(%s, %s) ") # volume_barcode, isbn
+        self.dbConnector.callProcedure('AddVolume', parameters=parameters)
 
     def author(self, parameters):
         query = ("INSERT INTO authors (first_name, last_name) VALUES (%s, %s);")

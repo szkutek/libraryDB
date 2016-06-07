@@ -133,3 +133,7 @@ INSERT INTO loans (customer_id, volume_id, loan_date, due_date, return_date)
 VALUES ('1', '1', curdate(), ADDDATE(curdate(), 31), NULL),
   ('1', '3', '2016-3-4', ADDDATE('2016-3-4', 30), '2016-4-30'),
   ('1', '9', '2016-4-4', ADDDATE('2016-4-4', 30), NULL);
+
+SELECT * FROM books;
+
+SELECT * FROM loans ORDER BY loan_date;

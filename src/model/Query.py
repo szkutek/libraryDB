@@ -2,7 +2,7 @@ class Query:
     def __init__(self, dbc):
         self.dbConnector = dbc
 
-    def simple(self, parameters):  # author and title only
+    def simple(self, parameters):  # author and title only <-popr.
         results = []
         for i in parameters:
             query = (

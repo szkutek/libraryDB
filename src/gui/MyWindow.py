@@ -4,7 +4,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 from src.model.Library import Library
-from src.utility.connector import DBConnector
+from src.utility.DBConnector import DBConnector
 from RegisterPage import RegisterPage
 from AddPage import AddPage
 from LoansPage import LoansPage
@@ -16,7 +16,7 @@ class MyWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="Library")
 
-        self.library = Library(DBConnector(user='root', password='root1234', database='library'))
+        self.library = Library(dbC=DBConnector(user='root', password='root1234', database='library'))
 
         # gui
         self.set_border_width(3)
@@ -24,7 +24,7 @@ class MyWindow(Gtk.Window):
         self.notebook = Gtk.Notebook()
         self.add(self.notebook)
 
-        self.addPg = AddPage()
+        self.addPg = AddPage(lib=self.library)
         self.addPg.utilities.buttonAuthor.connect("clicked", self.run)
 
         self.addUtiPage = Gtk.Box()
@@ -32,14 +32,14 @@ class MyWindow(Gtk.Window):
         self.addUtiPage.add(self.addPg)
         self.notebook.append_page(self.addUtiPage, Gtk.Label("Add"))
 
-        self.registerPg = RegisterPage()
+        self.registerPg = RegisterPage(lib=self.library)
 
         self.registerPage = Gtk.Box()
         self.registerPage.set_border_width(10)
         self.registerPage.add(self.registerPg)
         self.notebook.append_page(self.registerPage, Gtk.Label('Register'))
 
-        self.loansPg = LoansPage()
+        self.loansPg = LoansPage(lib=self.library)
 
         self.loanPage = Gtk.Box()
         self.loanPage.set_border_width(10)
@@ -61,7 +61,7 @@ class MyWindow(Gtk.Window):
         self.notebook.append_page(self.newAndPop, Gtk.Label('New and popular books'))
 
     def run(self, x):
-        cursor = self.library.advQuery.advanced(parameters=('asi', 'asi', 'found', 1970, 's', '12345'))
+        cursor = self.library.query.advanced(parameters=('asi', 'asi', 'found', 1970, 's', '12345'))
         result = "Executed query: {query}\nResult:\n"
         for (author, title, publish_year, language, publisher, available) in cursor:
             result += (

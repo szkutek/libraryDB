@@ -102,7 +102,7 @@ CREATE PROCEDURE AddBook(a1 VARCHAR(50), a2 VARCHAR(50), t VARCHAR(100), t_o VAR
     WHERE publisher LIKE p;
     SELECT @c_id := classification_id
     FROM classifications
-    WHERE classification LIKE c;
+    WHERE description LIKE c;
     INSERT INTO books
     (author_id, title, title_original, language, isbn, publish_year, publisher_id, classification_id)
     VALUES (@a_id, t, t_o, l, i, p_y, @p_id, @c_id);
@@ -110,33 +110,38 @@ CREATE PROCEDURE AddBook(a1 VARCHAR(50), a2 VARCHAR(50), t VARCHAR(100), t_o VAR
 
 # DODAWANIE GENRE DO KSIĄŻKI
 DROP PROCEDURE IF EXISTS AddGenreToBook;
-CREATE PROCEDURE AddGenreToBook(b_id INT, g VARCHAR(20))
+CREATE PROCEDURE AddGenreToBook(i INT, g VARCHAR(20))
   BEGIN
-    # podajemy nazwę
-    SET @genre = g;
     # potrzebujemy id
-    SELECT @genre_id := genre_id
+    SELECT @g_id := genre_id
     FROM genres
-    WHERE genre LIKE @genre;
+    WHERE genre LIKE g;
+    # search for book_id
+    SELECT @b_id := book_id
+    FROM books
+    WHERE isbn = i;
     # dodajemy do book_genres
     INSERT INTO book_genres
     (book_id, genre_id)
-    VALUES (b_id, @genre_id);
+    VALUES (@b_id, @g_id);
   END;
-# CALL AddGenreToBook(1, 'detective novel'); # WYKONYWANE W PĘTLI DLA KAŻDEGO WYBRANEGO GENRE
+# CALL AddGenreToBook(2, 'detective novel'); # WYKONYWANE W PĘTLI DLA KAŻDEGO WYBRANEGO GENRE
 
-DROP PROCEDURE IF EXISTS AddBookWithGenres;
-CREATE PROCEDURE AddBookWithGenres(
-  a1 VARCHAR(50), a2 VARCHAR(50), t VARCHAR(100), t_o VARCHAR(100), l VARCHAR(20),
-  i  INT, p_y INT, p VARCHAR(50), c VARCHAR(20), b_id INT, g VARCHAR(20))
+# ADD VOLUME
+DROP PROCEDURE IF EXISTS AddVolume;
+CREATE PROCEDURE AddVolume(volume_barcode INT, i INT)
   BEGIN
-    CALL AddBook(a1 VARCHAR(50), a2 VARCHAR(50), t VARCHAR(100), t_o VARCHAR(100), l VARCHAR(20),
-                         i  INT, p_y INT, p VARCHAR(50), c VARCHAR(20))
+    SELECT @book_id := book_id FROM books WHERE isbn = i;
+    INSERT INTO volumes (barcode, book_id, acquired) VALUES (volume_barcode, @book_id, curdate());
   END;
 
-  # MOST POPULAR
-  DROP PROCEDURE IF EXISTS PopularBook;
-CREATE PROCEDURE PopularBook(a1 VARCHAR(50), a2 VARCHAR(50), g VARCHAR(20), d DATE)
+# CALL AddVolume(32, 1);
+
+
+
+# MOST POPULAR
+DROP PROCEDURE IF EXISTS PopularBook;
+CREATE PROCEDURE PopularBook(a1 VARCHAR(50), a2 VARCHAR(50), g VARCHAR(20), d DATE) # <- POPR.
   # authors name, surname , genre, date
   BEGIN
     # to get ID
@@ -163,3 +168,4 @@ CREATE PROCEDURE PopularBook(a1 VARCHAR(50), a2 VARCHAR(50), g VARCHAR(20), d DA
     LIMIT 10;
   END;
 
+CALL PopularBook('Isaac', 'Asimov', 'science fiction', '2000-1-1')

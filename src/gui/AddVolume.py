@@ -5,10 +5,12 @@ from gi.repository import Gtk
 
 
 class AddVolume(Gtk.Box):
-    def __init__(self):
-        Gtk.Grid.__init__(self)
+    def __init__(self, lib):
+        Gtk.Box.__init__(self)
         self.set_spacing(10)
         self.set_border_width(10)
+
+        self.library = lib
 
         self.label = Gtk.Label("ADD VOLUME")
         self.label2 = Gtk.Label(" ")
@@ -22,6 +24,7 @@ class AddVolume(Gtk.Box):
         self.volumeBarcode.set_max_length(8)
 
         self.buttonAddVolume = Gtk.Button(label="ADD VOLUME")
+        self.buttonAddVolume.connect("clicked", self.addVolume)
 
         padding = 7
         self.volumeLabelBox = Gtk.VBox(spacing=9)
@@ -36,3 +39,9 @@ class AddVolume(Gtk.Box):
         self.volumeBox.pack_start(self.isbn, False, False, 0)
         self.volumeBox.pack_start(self.volumeBarcode, False, False, 0)
         self.volumeBox.pack_start(self.buttonAddVolume, False, False, 0)
+
+    def addVolume(self, button):
+        isbn = int(self.isbn.get_text())
+        volumeBarcode = int(self.volumeBarcode.get_text())
+
+        self.library.add.volume(parameters=(volumeBarcode, isbn))

@@ -8,17 +8,17 @@ from Status import Status
 
 
 class LoansPage(Gtk.VBox):
-    def __init__(self):
+    def __init__(self, lib):
         Gtk.VBox.__init__(self)
-        # self.set_row_spacing(5)
-        # self.set_column_spacing(20)
         self.set_spacing(10)
         self.set_border_width(10)
 
+        self.library = lib
+
         self.set_homogeneous(True)
 
-        self.rents = Rent()
-        self.returns = Return()
+        self.rents = Rent(self.library)
+        self.returns = Return(self.library)
         self.status = Status()
 
         self.loansBox = Gtk.Box()

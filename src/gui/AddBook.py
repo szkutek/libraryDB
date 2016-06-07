@@ -5,8 +5,9 @@ from gi.repository import Gtk
 
 
 class AddBook(Gtk.Box):
-    def __init__(self):
+    def __init__(self, lib):
         Gtk.Box.__init__(self)
+        self.library = lib
         # self.set_orientation(Gtk.Orientation.VERTICAL)
         self.set_spacing(10)
         self.set_border_width(10)
@@ -79,15 +80,25 @@ class AddBook(Gtk.Box):
         self.valuesBox.pack_start(self.buttonAddBook, False, False, 0)
 
     def addBook(self, button):
-        # author, title, original
-        # title, language, isbn, publisher,
+        # author, title, original title, language, isbn, publisher,
         # year, classification, genres
-        author = self.bookAuthor.get_text()
-        title = self.bookTitle.get_text()
-        language = self.bookLanguage.get_text()
-        isbn = self.bookIsbn.get_text()
-        publisher = self.bookPublisher.get_text()
-        year = self.bookYear.get_text()
-        classification = self.bookClass.get_text()
+        authors = str(self.bookAuthor.get_text())
+        author = authors.split(',')
+        title = str(self.bookTitle.get_text())
+        orig_title = str(self.bookOrigTitle.get_text())
+        language = str(self.bookLanguage.get_text())
+        isbn = int(self.bookIsbn.get_text())
+        publisher = str(self.bookPublisher.get_text())
+        year = int(self.bookYear.get_text())
+        classification = str(self.bookClass.get_text())
         genre = str(self.bookGenre.get_text())
         genres = genre.split(',')
+        self.library.add.book(parameters=(author[0], author[1], title, orig_title, language, isbn,
+                                          year, publisher, classification))
+        for i in genres:
+            self.library.add.genreToBook(parameters=(isbn, i))
+
+        # print("Added: " +
+        #       author[0] + ", " + author[1]
+        #       + ", " + title + ", " + orig_title + ", " + language + ", " + isbn + ", " + publisher + ", " +
+        #       str(year) + ", " + classification)

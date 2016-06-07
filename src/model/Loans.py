@@ -1,4 +1,4 @@
-class Book:
+class Loans:
     def __init__(self, dbc):
         self.dbConnector = dbc
 

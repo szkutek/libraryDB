@@ -2,21 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74eb6e77-4da5-420b-b3f8-1c54bd97fc64" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/Book.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/Customer.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/model/customers.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/model/loans.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/model/AdvQueries.py" afterPath="$PROJECT_DIR$/src/model/Query.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/model/data.py" afterPath="$PROJECT_DIR$/src/model/Add.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/model/Book.py" afterPath="$PROJECT_DIR$/src/model/Loans.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/utility/connector.py" afterPath="$PROJECT_DIR$/src/utility/DBConnector.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LibraryProcedures.sql" afterPath="$PROJECT_DIR$/LibraryProcedures.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library.sql" afterPath="$PROJECT_DIR$/library.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/poprawione_zapytania.sql" afterPath="$PROJECT_DIR$/poprawione_zapytania.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/AddBook.py" afterPath="$PROJECT_DIR$/src/gui/AddBook.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/AddPage.py" afterPath="$PROJECT_DIR$/src/gui/AddPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/AddUtilities.py" afterPath="$PROJECT_DIR$/src/gui/AddUtilities.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/AddVolume.py" afterPath="$PROJECT_DIR$/src/gui/AddVolume.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/LoansPage.py" afterPath="$PROJECT_DIR$/src/gui/LoansPage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/MyWindow.py" afterPath="$PROJECT_DIR$/src/gui/MyWindow.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/NewBooks.py" afterPath="$PROJECT_DIR$/src/gui/NewBooks.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/PopularBooks.py" afterPath="$PROJECT_DIR$/src/gui/PopularBooks.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/SimpleSearch.py" afterPath="$PROJECT_DIR$/src/gui/SimpleSearch.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/Register.py" afterPath="$PROJECT_DIR$/src/gui/Register.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/RegisterPage.py" afterPath="$PROJECT_DIR$/src/gui/RegisterPage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/Rent.py" afterPath="$PROJECT_DIR$/src/gui/Rent.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/Return.py" afterPath="$PROJECT_DIR$/src/gui/Return.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Add.py" afterPath="$PROJECT_DIR$/src/model/Add.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Library.py" afterPath="$PROJECT_DIR$/src/model/Library.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/Query.py" afterPath="$PROJECT_DIR$/src/model/Query.py" />
     </list>
     <ignored path="libraryDB.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +34,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/libraryDB$libraryboxes.coverage" NAME="libraryboxes Coverage Results" MODIFIED="1464882514902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/gui" />
-    <SUITE FILE_PATH="coverage/libraryDB$MyWindow.coverage" NAME="MyWindow Coverage Results" MODIFIED="1465082881646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/gui" />
+    <SUITE FILE_PATH="coverage/libraryDB$MyWindow.coverage" NAME="MyWindow Coverage Results" MODIFIED="1465310553920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/gui" />
     <SUITE FILE_PATH="coverage/libraryDB$connector.coverage" NAME="connector Coverage Results" MODIFIED="1463831684704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/utility" />
     <SUITE FILE_PATH="coverage/libraryDB$Library.coverage" NAME="Library Coverage Results" MODIFIED="1464882355072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
@@ -54,50 +57,39 @@
       <file leaf-file-name="MyWindow.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/MyWindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+            <state relative-caret-position="488">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Library.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Library.py">
+      <file leaf-file-name="AddPage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/AddPage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Book.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Book.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+            <state relative-caret-position="360">
+              <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Add.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Add.py">
+      <file leaf-file-name="Loans.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/Loans.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-              <folding>
-                <marker date="1465080655239" expanded="true" signature="122:134" ph="INSERT INTO customers... " />
-                <marker date="1465080655239" expanded="true" signature="122:139" ph="INSERT INTO books... " />
-                <marker date="1465080655239" expanded="true" signature="122:257" ph="INSERT INTO books... " />
-                <marker date="1465080655239" expanded="true" signature="122:318" ph="INSERT INTO books... " />
-                <marker date="1465080655239" expanded="true" signature="613:672" ph="INSERT INTO authors... " />
-                <marker date="1465080655239" expanded="true" signature="806:865" ph="INSERT INTO publishers... " />
-                <marker date="1465080655239" expanded="true" signature="1004:1057" ph="INSERT INTO classifications... " />
-                <marker date="1465080655239" expanded="true" signature="1187:1225" ph="INSERT INTO genres... " />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoansPage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/LoansPage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,34 +97,19 @@
       <file leaf-file-name="AddBook.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gui/AddBook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="83" column="38" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
+            <state relative-caret-position="254">
+              <caret line="95" column="27" selection-start-line="95" selection-start-column="27" selection-end-line="95" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Customer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Customer.py">
+      <file leaf-file-name="AddUtilities.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/AddUtilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding>
-                <marker date="1465063528356" expanded="true" signature="144:305" ph="INSERT INTO customers... " />
-                <marker date="1465063528356" expanded="true" signature="447:515" ph="DELETE FROM " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Query.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/Query.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-              <folding>
-                <marker date="1465077312683" expanded="true" signature="984:1575" ph="SELECT last_... " />
-              </folding>
+            <state relative-caret-position="308">
+              <caret line="93" column="31" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,18 +136,10 @@
         <option value="$PROJECT_DIR$/src/gui/AddUtitities.py" />
         <option value="$PROJECT_DIR$/src/gui/libraryboxes.py" />
         <option value="$PROJECT_DIR$/src/gui/AddStatus.py" />
-        <option value="$PROJECT_DIR$/src/gui/AddVolume.py" />
         <option value="$PROJECT_DIR$/src/gui/Loans.py" />
-        <option value="$PROJECT_DIR$/src/gui/AddPage.py" />
         <option value="$PROJECT_DIR$/src/app.py" />
-        <option value="$PROJECT_DIR$/src/gui/AddUtilities.py" />
         <option value="$PROJECT_DIR$/src/gui/Lend.py" />
-        <option value="$PROJECT_DIR$/src/gui/Rent.py" />
-        <option value="$PROJECT_DIR$/src/gui/Register.py" />
         <option value="$PROJECT_DIR$/src/gui/Status.py" />
-        <option value="$PROJECT_DIR$/src/gui/RegisterPage.py" />
-        <option value="$PROJECT_DIR$/src/gui/Return.py" />
-        <option value="$PROJECT_DIR$/src/gui/LoansPage.py" />
         <option value="$PROJECT_DIR$/src/gui/AdvancedSearch.py" />
         <option value="$PROJECT_DIR$/src/gui/SearchPage.py" />
         <option value="$PROJECT_DIR$/src/gui/SimpleSearch.py" />
@@ -179,16 +148,25 @@
         <option value="$PROJECT_DIR$/src/gui/NewAndPopularPage.py" />
         <option value="$PROJECT_DIR$/src/model/customers.py" />
         <option value="$PROJECT_DIR$/src/model/AdvQueries.py" />
-        <option value="$PROJECT_DIR$/src/gui/MyWindow.py" />
         <option value="$PROJECT_DIR$/src/model/loans.py" />
-        <option value="$PROJECT_DIR$/src/model/Loans.py" />
         <option value="$PROJECT_DIR$/src/model/data.py" />
         <option value="$PROJECT_DIR$/src/model/Customer.py" />
-        <option value="$PROJECT_DIR$/src/model/Query.py" />
         <option value="$PROJECT_DIR$/src/model/Book.py" />
-        <option value="$PROJECT_DIR$/src/model/Add.py" />
+        <option value="$PROJECT_DIR$/src/model/Loans.py" />
         <option value="$PROJECT_DIR$/src/model/Library.py" />
+        <option value="$PROJECT_DIR$/src/model/Query.py" />
+        <option value="$PROJECT_DIR$/src/gui/AddPage.py" />
         <option value="$PROJECT_DIR$/src/gui/AddBook.py" />
+        <option value="$PROJECT_DIR$/src/utility/DBConnector.py" />
+        <option value="$PROJECT_DIR$/src/model/Add.py" />
+        <option value="$PROJECT_DIR$/src/gui/RegisterPage.py" />
+        <option value="$PROJECT_DIR$/src/gui/AddVolume.py" />
+        <option value="$PROJECT_DIR$/src/gui/Register.py" />
+        <option value="$PROJECT_DIR$/src/gui/LoansPage.py" />
+        <option value="$PROJECT_DIR$/src/gui/Return.py" />
+        <option value="$PROJECT_DIR$/src/gui/Rent.py" />
+        <option value="$PROJECT_DIR$/src/gui/MyWindow.py" />
+        <option value="$PROJECT_DIR$/src/gui/AddUtilities.py" />
       </list>
     </option>
   </component>
@@ -257,6 +235,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libraryDB" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libraryDB" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utility" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -613,7 +609,21 @@
       <option name="project" value="LOCAL" />
       <updated>1465055598185</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="event handlers + mysql procedures">
+      <created>1465085256611</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1465085256611</updated>
+    </task>
+    <task id="LOCAL-00007" summary="procedures .sql file">
+      <created>1465085298100</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1465085298100</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -627,7 +637,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1368" height="743" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21303074" sideWeight="0.49462366" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -635,18 +645,18 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898772" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39379844" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25873017" sideWeight="0.50537634" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28992248" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -664,20 +674,15 @@
     <MESSAGE value="updated queries" />
     <MESSAGE value="working on gui + connecting signals" />
     <MESSAGE value="working on gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on gui" />
+    <MESSAGE value="event handlers + mysql procedures" />
+    <MESSAGE value="procedures .sql file" />
+    <option name="LAST_COMMIT_MESSAGE" value="procedures .sql file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gui/MyWindow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -685,7 +690,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utility/connector.py">
+    <entry file="file://$PROJECT_DIR$/src/utility/DBConnector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
@@ -699,7 +704,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Book.py">
+    <entry file="file://$PROJECT_DIR$/src/model/Loans.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
@@ -727,7 +732,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utility/connector.py">
+    <entry file="file://$PROJECT_DIR$/src/utility/DBConnector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
@@ -741,7 +746,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Book.py">
+    <entry file="file://$PROJECT_DIR$/src/model/Loans.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
@@ -762,7 +767,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utility/connector.py">
+    <entry file="file://$PROJECT_DIR$/src/utility/DBConnector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -790,7 +795,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utility/connector.py">
+    <entry file="file://$PROJECT_DIR$/src/utility/DBConnector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -818,7 +823,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utility/connector.py">
+    <entry file="file://$PROJECT_DIR$/src/utility/DBConnector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -836,13 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utility/connector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -850,13 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/AddVolume.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -871,41 +862,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/AddUtilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/Register.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/Rent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/Return.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -937,20 +893,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/LoansPage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/RegisterPage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/SimpleSearch.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -972,20 +914,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Query.py">
+    <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-360">
+          <caret line="4" column="66" selection-start-line="4" selection-start-column="66" selection-end-line="4" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python2.7/dist-packages/mysql/connector/cursor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="589" column="8" selection-start-line="589" selection-start-column="8" selection-end-line="589" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utility/DBConnector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Library.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
           <folding>
-            <marker date="1465077312683" expanded="true" signature="984:1575" ph="SELECT last_... " />
+            <element signature="e#0#29#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Add.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
+          <folding>
+            <marker date="1465309294062" expanded="true" signature="245:282" ph="INSERT INTO books... " />
+            <marker date="1465309294062" expanded="true" signature="915:974" ph="INSERT INTO authors... " />
+            <marker date="1465309294062" expanded="true" signature="1108:1167" ph="INSERT INTO publishers... " />
+            <marker date="1465309294062" expanded="true" signature="1306:1359" ph="INSERT INTO classifications... " />
+            <marker date="1465309294062" expanded="true" signature="1489:1527" ph="INSERT INTO genres... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/RegisterPage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/Register.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="77" column="60" selection-start-line="77" selection-start-column="60" selection-end-line="77" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Customer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="108">
+          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
           <folding>
             <marker date="1465063528356" expanded="true" signature="144:305" ph="INSERT INTO customers... " />
             <marker date="1465063528356" expanded="true" signature="447:515" ph="DELETE FROM " />
@@ -993,60 +995,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Library.py">
+    <entry file="file://$PROJECT_DIR$/src/gui/AddVolume.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/MyWindow.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+        <state relative-caret-position="200">
+          <caret line="44" column="27" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/AddPage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Book.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        <state relative-caret-position="360">
+          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Add.py">
+    <entry file="file://$PROJECT_DIR$/src/gui/Return.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-          <folding>
-            <marker date="1465080655239" expanded="true" signature="122:134" ph="INSERT INTO customers... " />
-            <marker date="1465080655239" expanded="true" signature="122:139" ph="INSERT INTO books... " />
-            <marker date="1465080655239" expanded="true" signature="122:257" ph="INSERT INTO books... " />
-            <marker date="1465080655239" expanded="true" signature="122:318" ph="INSERT INTO books... " />
-            <marker date="1465080655239" expanded="true" signature="613:672" ph="INSERT INTO authors... " />
-            <marker date="1465080655239" expanded="true" signature="806:865" ph="INSERT INTO publishers... " />
-            <marker date="1465080655239" expanded="true" signature="1004:1057" ph="INSERT INTO classifications... " />
-            <marker date="1465080655239" expanded="true" signature="1187:1225" ph="INSERT INTO genres... " />
-          </folding>
+        <state relative-caret-position="254">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/Rent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="46" column="31" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/LoansPage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Loans.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/MyWindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/AddUtilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="93" column="31" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/AddBook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="83" column="38" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
+        <state relative-caret-position="254">
+          <caret line="95" column="27" selection-start-line="95" selection-start-column="27" selection-end-line="95" selection-end-column="27" />
           <folding />
         </state>
       </provider>
