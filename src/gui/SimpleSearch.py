@@ -58,4 +58,4 @@ class SimpleSearch(Gtk.Box):
         publishYear2 = int(self.publishYear2.get_text())
         query = str(self.simpleSearch.get_text())
         queries = query.split(' ')
-        self.library.query.simple(parameters=(languageSearch, publishYear1, publishYear2, queries))
+        self.library.query.simple(parameters=(languageSearch, publishYear1, publishYear2, query))

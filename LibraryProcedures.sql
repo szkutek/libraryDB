@@ -1,62 +1,100 @@
 # SIMPLE SEARCH
-DROP PROCEDURE IF EXISTS CreateSearchTemp;
-CREATE PROCEDURE CreateSearchTemp(IN lang VARCHAR(20), IN year1 INT(4), IN year2 INT(4))
+# DROP PROCEDURE IF EXISTS CreateSearchTemp;
+# CREATE PROCEDURE CreateSearchTemp(IN lang VARCHAR(20), IN year1 INT(4), IN year2 INT(4))
+#   BEGIN
+#     DROP TABLE IF EXISTS SearchTemp;
+#     CREATE TEMPORARY TABLE IF NOT EXISTS SearchTemp (
+#       search_id      INT          NOT NULL AUTO_INCREMENT,
+#       first_name     VARCHAR(50)  NOT NULL,
+#       last_name      VARCHAR(50)  NOT NULL,
+#       title          VARCHAR(100) NOT NULL,
+#       title_original VARCHAR(100),
+#       publish_year   INT(4)       NOT NULL,
+#       available      INT          NOT NULL,
+#       PRIMARY KEY (search_id)
+#     );
+#
+#     INSERT INTO SearchTemp (first_name, last_name, title, title_original, publish_year, available)
+#       SELECT
+#         first_name,
+#         last_name,
+#         title,
+#         title_original,
+#         publish_year,
+#         COUNT(volume_id) available
+#       FROM books
+#         JOIN authors USING (author_id)
+#         JOIN available_volumes ON books.book_id = available_volumes.book_id
+#       WHERE books.language = lang
+#             AND (books.publish_year BETWEEN year1 AND year2)
+#       GROUP BY books.book_id;
+#   END;
+#
+# CALL CreateSearchTemp('English', 1970, 1970);
+
+
+DROP FUNCTION IF EXISTS word_count;
+CREATE FUNCTION word_count(string TEXT(500))
+  RETURNS INT(10)
   BEGIN
-    CREATE TEMPORARY TABLE IF NOT EXISTS SearchTemp (
+    DECLARE new_string TEXT(500);
+    WHILE INSTR(string, '  ') > 0
+    DO
+      SET new_string = (SELECT REPLACE(string, '  ', ' '));
+      SET string = new_string;
+    END WHILE;
+
+    RETURN (SELECT LENGTH(TRIM(string)) - LENGTH(REPLACE(TRIM(string), ' ', '')) + 1);
+  END;
+
+SET @q = 'halo hallo how are you';
+SELECT @words := word_count(@q);
+
+
+DROP PROCEDURE IF EXISTS SimpleSearch;
+CREATE PROCEDURE SimpleSearch(IN f_query VARCHAR(100), IN lang VARCHAR(20), IN year1 INT(4), IN year2 INT(4))
+  BEGIN
+    DROP TABLE IF EXISTS ResultTblTmp;
+    CREATE TEMPORARY TABLE IF NOT EXISTS ResultTblTmp (# RESULTS
       search_id      INT          NOT NULL AUTO_INCREMENT,
-      first_name     VARCHAR(50)  NOT NULL,
-      last_name      VARCHAR(50)  NOT NULL,
+      author         VARCHAR(100) NOT NULL,
       title          VARCHAR(100) NOT NULL,
       title_original VARCHAR(100),
       publish_year   INT(4)       NOT NULL,
       available      INT          NOT NULL,
       PRIMARY KEY (search_id)
     );
-    TRUNCATE SearchTemp;
 
-    INSERT INTO SearchTemp (first_name, last_name, title, title_original, publish_year, available)
-      SELECT
-        first_name,
-        last_name,
-        title,
-        title_original,
-        publish_year,
-        COUNT(volume_id) available
-      FROM books
-        JOIN authors USING (author_id)
-        JOIN available_volumes ON books.book_id = available_volumes.book_id
-      WHERE books.language = lang
-            AND (books.publish_year BETWEEN year1 AND year2)
-      GROUP BY books.book_id;
+    SET @wc = word_count(f_query);
+    WHILE @wc > 0 DO
+      SET @word := SUBSTRING_INDEX(f_query, ' ', -1);
+
+      INSERT INTO ResultTblTmp
+        (SELECT
+           CONCAT_WS(', ', last_name, first_name) AS author,
+           title,
+           publish_year,
+           COUNT(volume_id)                          available
+         FROM books
+           JOIN authors USING (author_id)
+           JOIN available_volumes ON books.book_id = available_volumes.book_id
+         WHERE books.language = lang
+               AND (books.publish_year BETWEEN year1 AND year2)
+               AND (first_name REGEXP @word
+                    OR last_name REGEXP @word
+                    OR first_name REGEXP @word
+                    OR title REGEXP @word
+                    OR title_original REGEXP @word)
+         GROUP BY books.book_id);
+
+      SET @wc = @wc - 1, @f_query = SUBSTRING_INDEX(@f_query, ' ', @wc);
+    END WHILE;
   END;
 
-CALL CreateSearchTemp('English', 1970, 1970);
-
-DROP PROCEDURE IF EXISTS SimpleQuery;
-CREATE PROCEDURE SimpleQuery(query VARCHAR(50))
-  BEGIN
-    SELECT
-      CONCAT_WS(', ', last_name, first_name) AS author,
-      title,
-      publish_year,
-      available
-    FROM SearchTemp
-    WHERE last_name REGEXP query
-          OR first_name REGEXP query
-          OR title REGEXP query
-          OR title_original REGEXP query;
-  END;
-CALL SimpleQuery('asimov');
-
-DROP PROCEDURE IF EXISTS SimpleSearch;
-CREATE PROCEDURE SimpleSearch(query VARCHAR(50))
-  BEGIN
-    
-  END;
-
-
-
-
+CALL SimpleSearch('f', 'English', 0, 2020);
+SELECT count(*)
+FROM volumes
+GROUP BY book_id;
 
 # WYPOŻYCZANIE KSIĄŻEK
 DROP PROCEDURE IF EXISTS RentBook;
