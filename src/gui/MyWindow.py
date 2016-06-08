@@ -53,7 +53,7 @@ class MyWindow(Gtk.Window):
         self.searchPage.add(self.searchPg)
         self.notebook.append_page(self.searchPage, Gtk.Label('Search'))
 
-        self.newAndPopular = NewAndPopularPage()
+        self.newAndPopular = NewAndPopularPage(lib=self.library)
 
         self.newAndPop = Gtk.Box()
         self.newAndPop.set_border_width(10)

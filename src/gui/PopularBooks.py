@@ -5,8 +5,10 @@ from gi.repository import Gtk
 
 
 class PopularBooks(Gtk.Box):
-    def __init__(self):
+    def __init__(self, lib):
         Gtk.Box.__init__(self)
+
+        self.library = lib
 
         self.set_spacing(10)
         self.set_border_width(10)
@@ -15,7 +17,8 @@ class PopularBooks(Gtk.Box):
         self.label2 = Gtk.Label(" ")
 
         self.authorLabel = Gtk.Label("Author:")
-        self.author = Gtk.Entry()
+        self.authorName = Gtk.Entry()
+        self.authorSurname = Gtk.Entry()
 
         self.genreLabel = Gtk.Label("Genre:")
         self.genre = Gtk.Entry()
@@ -24,10 +27,11 @@ class PopularBooks(Gtk.Box):
         self.popularSince = Gtk.Entry()
 
         # self.defaultLabel = Gtk.Label(" ")
-        self.default = Gtk.Button(label="Set default")
+        # self.default = Gtk.Button(label="Set default")
 
-        # self.searchLabel = Gtk.Label(" ")
-        self.search = Gtk.Button(label="SEARCH")
+        self.buttonSearchLabel = Gtk.Label(" ")
+        self.buttonSearch = Gtk.Button(label="SEARCH")
+        self.buttonSearch.connect("clicked", self.popularBooks)
 
         padding = 7
         self.labelBox = Gtk.VBox(spacing=8)
@@ -36,12 +40,25 @@ class PopularBooks(Gtk.Box):
         self.labelBox.pack_start(self.authorLabel, False, True, padding)
         self.labelBox.pack_start(self.genreLabel, False, True, padding)
         self.labelBox.pack_start(self.popularSinceLabel, False, True, padding)
-        self.labelBox.pack_start(self.default, False, False, 2)
+        self.labelBox.pack_start(self.buttonSearchLabel, False, True, padding)
 
         self.valuesBox = Gtk.VBox(spacing=10)
         self.add(self.valuesBox)
         self.valuesBox.pack_start(self.label2, False, False, padding)
-        self.valuesBox.pack_start(self.author, False, False, 0)
+
+        self.authorBox = Gtk.Box(spacing=5)
+        self.valuesBox.add(self.authorBox)
+        self.authorBox.pack_start(self.authorName, False, False, 0)
+        self.authorBox.pack_start(self.authorSurname, False, False, 0)
+
         self.valuesBox.pack_start(self.genre, False, False, 0)
         self.valuesBox.pack_start(self.popularSince, False, False, 0)
-        self.valuesBox.pack_start(self.search, False, False, 0)
+        self.valuesBox.pack_start(self.buttonSearch, False, False, 0)
+
+    def popularBooks(self, button):
+        authorName = str(self.authorName.get_text())
+        authorSurname = str(self.authorSurname.get_text())
+        genre = str(self.genre.get_text())
+        popularSince = str(self.popularSince.get_text())
+
+        self.library.query.popularBooks(parameters=(authorName, authorSurname, genre, popularSince))

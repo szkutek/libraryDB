@@ -5,8 +5,10 @@ from gi.repository import Gtk
 
 
 class AdvancedSearch(Gtk.Box):
-    def __init__(self):
+    def __init__(self, lib):
         Gtk.Box.__init__(self)
+
+        self.library = lib
 
         self.set_spacing(10)
         self.set_border_width(10)
@@ -14,59 +16,80 @@ class AdvancedSearch(Gtk.Box):
         self.label = Gtk.Label("ADVANCED SEARCH")
         self.label2 = Gtk.Label(" ")
 
-        self.bookTitleLabel = Gtk.Label("Title:")
-        self.bookTitle = Gtk.Entry()
-        self.bookTitle.set_max_length(100)
+        self.titleLabel = Gtk.Label("Title:")
+        self.title = Gtk.Entry()
+        self.title.set_max_length(100)
 
-        self.bookAuthorLabel = Gtk.Label("Author:")
-        self.bookAuthor = Gtk.Entry()
+        self.authorLabel = Gtk.Label("Author:")
+        self.authorName = Gtk.Entry()
+        self.authorSurname = Gtk.Entry()
 
-        self.bookIsbnLabel = Gtk.Label("ISBN:")
-        self.bookIsbn = Gtk.Entry()
-        self.bookIsbn.set_max_length(13)
+        self.isbnLabel = Gtk.Label("ISBN:")
+        self.isbn = Gtk.Entry()
+        self.isbn.set_max_length(13)
 
-        self.bookPublisherLabel = Gtk.Label("Publisher:")
-        self.bookPublisher = Gtk.Entry()
+        self.publisherLabel = Gtk.Label("Publisher:")
+        self.publisher = Gtk.Entry()
 
-        self.bookClassLabel = Gtk.Label("Classification:")
-        self.bookClass = Gtk.Entry()  # combo
+        self.classificationLabel = Gtk.Label("Classification:")
+        self.classification = Gtk.Entry()  # combo
 
-        self.bookGenreLabel = Gtk.Label("Genres:")
-        self.bookGenre = Gtk.Entry()  # combo
+        self.genreLabel = Gtk.Label("Genres:")
+        self.genre = Gtk.Entry()  # combo
 
-        self.bookLanguageLabel = Gtk.Label("Language:")
-        self.bookLanguage = Gtk.Entry()  # COMBO BOX
+        self.languageLabel = Gtk.Label("Language:")
+        self.language = Gtk.Entry()  # COMBO BOX
 
-        self.bookYearLabel = Gtk.Label("Publish year:")
-        self.bookYear = Gtk.Entry()
+        self.publishYearLabel = Gtk.Label("Publish year:")
+        self.publishYear = Gtk.Entry()
 
         self.buttonSearchLabel = Gtk.Label(" ")
         self.buttonSearch = Gtk.Button(label="SEARCH")
+        self.buttonSearch.connect("clicked", self.search)
 
         padding = 7
         self.labelBox = Gtk.VBox(spacing=8)
         self.labelBox.set_homogeneous(True)
         self.add(self.labelBox)
         self.labelBox.pack_start(self.label, False, True, padding)
-        self.labelBox.pack_start(self.bookAuthorLabel, False, True, padding)
-        self.labelBox.pack_start(self.bookTitleLabel, False, True, padding)
-        self.labelBox.pack_start(self.bookIsbnLabel, False, True, padding)
-        self.labelBox.pack_start(self.bookPublisherLabel, False, True, padding)
-        self.labelBox.pack_start(self.bookClassLabel, False, True, padding)
-        self.labelBox.pack_start(self.bookGenreLabel, False, True, padding)
-        self.labelBox.pack_start(self.bookLanguageLabel, False, True, padding)
-        self.labelBox.pack_start(self.bookYearLabel, False, True, padding)
+        self.labelBox.pack_start(self.authorLabel, False, True, padding)
+        self.labelBox.pack_start(self.titleLabel, False, True, padding)
+        self.labelBox.pack_start(self.isbnLabel, False, True, padding)
+        self.labelBox.pack_start(self.publisherLabel, False, True, padding)
+        self.labelBox.pack_start(self.classificationLabel, False, True, padding)
+        self.labelBox.pack_start(self.genreLabel, False, True, padding)
+        self.labelBox.pack_start(self.languageLabel, False, True, padding)
+        self.labelBox.pack_start(self.publishYearLabel, False, True, padding)
         self.labelBox.pack_start(self.buttonSearchLabel, False, True, padding)
 
         self.valuesBox = Gtk.VBox(spacing=10)
         self.add(self.valuesBox)
         self.valuesBox.pack_start(self.label2, False, False, padding)
-        self.valuesBox.pack_start(self.bookAuthor, False, False, 0)
-        self.valuesBox.pack_start(self.bookTitle, False, False, 0)
-        self.valuesBox.pack_start(self.bookIsbn, False, False, 0)
-        self.valuesBox.pack_start(self.bookPublisher, False, False, 0)
-        self.valuesBox.pack_start(self.bookClass, False, False, 0)
-        self.valuesBox.pack_start(self.bookGenre, False, False, 0)
-        self.valuesBox.pack_start(self.bookLanguage, False, False, 0)
-        self.valuesBox.pack_start(self.bookYear, False, False, 0)
+
+        self.authorBox = Gtk.Box(spacing=5)
+        self.valuesBox.add(self.authorBox)
+        self.authorBox.pack_start(self.authorName, False, False, 0)
+        self.authorBox.pack_start(self.authorSurname, False, False, 0)
+        
+        self.valuesBox.pack_start(self.title, False, False, 0)
+        self.valuesBox.pack_start(self.isbn, False, False, 0)
+        self.valuesBox.pack_start(self.publisher, False, False, 0)
+        self.valuesBox.pack_start(self.classification, False, False, 0)
+        self.valuesBox.pack_start(self.genre, False, False, 0)
+        self.valuesBox.pack_start(self.language, False, False, 0)
+        self.valuesBox.pack_start(self.publishYear, False, False, 0)
         self.valuesBox.pack_start(self.buttonSearch, False, False, 0)
+
+    def search(self, button):
+        authorName = str(self.authorName.get_text())
+        authorSurname = str(self.authorSurname.get_text())
+        title = str(self.title.get_text())
+        isbn = int(self.isbn.get_text())
+        publisher = str(self.publisher.get_text())
+        classification = str(self.classification.get_text())
+        genre = str(self.genre.get_text())
+        language = str(self.language.get_text())
+        publishYear = int(self.publishYear.get_text())
+
+        results = self.library.query.advanced(parameters=(authorName, authorSurname, title, publishYear,
+                                                          publisher, isbn, classification, genre, language))

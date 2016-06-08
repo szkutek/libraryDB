@@ -72,7 +72,7 @@ WHERE genre = @genre
       AND publish_year = @rok_wyd;
 
 # 4. Najbardziej popularny tytuł (z uwzględnieniem autora i/lub gatunku)
-
+SET @author = a, @genre = g, @since = s;
 # tytuł
 SELECT
   title,

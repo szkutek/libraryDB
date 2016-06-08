@@ -5,8 +5,10 @@ from gi.repository import Gtk
 
 
 class NewBooks(Gtk.Box):
-    def __init__(self):
+    def __init__(self, lib):
         Gtk.Box.__init__(self)
+
+        self.library = lib
 
         self.set_spacing(10)
         self.set_border_width(10)
@@ -28,6 +30,7 @@ class NewBooks(Gtk.Box):
 
         self.buttonLabel = Gtk.Label(" ")
         self.button = Gtk.Button(label="SEARCH")
+        self.button.connect("clicked", self.newBooks)
 
         padding = 7
         self.labelBox = Gtk.VBox(spacing=8)
@@ -47,3 +50,11 @@ class NewBooks(Gtk.Box):
         self.valuesBox.pack_start(self.publishedYear, False, False, 0)
         self.valuesBox.pack_start(self.addedYear, False, False, 0)
         self.valuesBox.pack_start(self.button, False, False, 0)
+
+    def newBooks(self, button):
+        genre = str(self.genre.get_text())
+        language = str(self.languageSearch.get_text())
+        publishedYear = int(self.publishedYear.get_text())
+        addedYear = int(self.addedYear.get_text())
+
+        self.library.query.newBooks(parameters=(genre, language, publishedYear, addedYear))

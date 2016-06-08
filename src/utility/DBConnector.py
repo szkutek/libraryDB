@@ -29,6 +29,9 @@ class DBConnector:
         except Exception as e:
             print(e)
 
+    def get_results(self):
+        return self.cursor.stored_results()
+
     def executeQuery(self, query, parameters, multi):
         # query, parameters, multi
         try:
@@ -38,7 +41,8 @@ class DBConnector:
         except Exception as e:
             print(e)
 
-    def searchQuery(self, query, parameters):
-        self.cursor.execute(query, parameters)
+    def searchQuery(self, query, parameters, multi):
+        searchCursor = self.connection.cursor()
+        searchCursor.execute(query, parameters, multi)
         # self.connection.commit()
-        return self.cursor
+        return searchCursor

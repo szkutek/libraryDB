@@ -1,102 +1,3 @@
-# SIMPLE SEARCH
-# DROP PROCEDURE IF EXISTS CreateSearchTemp;
-# CREATE PROCEDURE CreateSearchTemp(IN lang VARCHAR(20), IN year1 INT(4), IN year2 INT(4))
-#   BEGIN
-#     DROP TABLE IF EXISTS SearchTemp;
-#     CREATE TEMPORARY TABLE IF NOT EXISTS SearchTemp (
-#       search_id      INT          NOT NULL AUTO_INCREMENT,
-#       first_name     VARCHAR(50)  NOT NULL,
-#       last_name      VARCHAR(50)  NOT NULL,
-#       title          VARCHAR(100) NOT NULL,
-#       title_original VARCHAR(100),
-#       publish_year   INT(4)       NOT NULL,
-#       available      INT          NOT NULL,
-#       PRIMARY KEY (search_id)
-#     );
-#
-#     INSERT INTO SearchTemp (first_name, last_name, title, title_original, publish_year, available)
-#       SELECT
-#         first_name,
-#         last_name,
-#         title,
-#         title_original,
-#         publish_year,
-#         COUNT(volume_id) available
-#       FROM books
-#         JOIN authors USING (author_id)
-#         JOIN available_volumes ON books.book_id = available_volumes.book_id
-#       WHERE books.language = lang
-#             AND (books.publish_year BETWEEN year1 AND year2)
-#       GROUP BY books.book_id;
-#   END;
-#
-# CALL CreateSearchTemp('English', 1970, 1970);
-
-
-DROP FUNCTION IF EXISTS word_count;
-CREATE FUNCTION word_count(string TEXT(500))
-  RETURNS INT(10)
-  BEGIN
-    DECLARE new_string TEXT(500);
-    WHILE INSTR(string, '  ') > 0
-    DO
-      SET new_string = (SELECT REPLACE(string, '  ', ' '));
-      SET string = new_string;
-    END WHILE;
-
-    RETURN (SELECT LENGTH(TRIM(string)) - LENGTH(REPLACE(TRIM(string), ' ', '')) + 1);
-  END;
-
-SET @q = 'halo hallo how are you';
-SELECT @words := word_count(@q);
-
-
-DROP PROCEDURE IF EXISTS SimpleSearch;
-CREATE PROCEDURE SimpleSearch(IN f_query VARCHAR(100), IN lang VARCHAR(20), IN year1 INT(4), IN year2 INT(4))
-  BEGIN
-    DROP TABLE IF EXISTS ResultTblTmp;
-    CREATE TEMPORARY TABLE IF NOT EXISTS ResultTblTmp (# RESULTS
-      search_id      INT          NOT NULL AUTO_INCREMENT,
-      author         VARCHAR(100) NOT NULL,
-      title          VARCHAR(100) NOT NULL,
-      title_original VARCHAR(100),
-      publish_year   INT(4)       NOT NULL,
-      available      INT          NOT NULL,
-      PRIMARY KEY (search_id)
-    );
-
-    SET @wc = word_count(f_query);
-    WHILE @wc > 0 DO
-      SET @word := SUBSTRING_INDEX(f_query, ' ', -1);
-
-      INSERT INTO ResultTblTmp
-        (SELECT
-           CONCAT_WS(', ', last_name, first_name) AS author,
-           title,
-           publish_year,
-           COUNT(volume_id)                          available
-         FROM books
-           JOIN authors USING (author_id)
-           JOIN available_volumes ON books.book_id = available_volumes.book_id
-         WHERE books.language = lang
-               AND (books.publish_year BETWEEN year1 AND year2)
-               AND (first_name REGEXP @word
-                    OR last_name REGEXP @word
-                    OR first_name REGEXP @word
-                    OR title REGEXP @word
-                    OR title_original REGEXP @word)
-         GROUP BY books.book_id);
-
-      SET @wc = @wc - 1, @f_query = SUBSTRING_INDEX(@f_query, ' ', @wc);
-    END WHILE;
-  END;
-
-CALL SimpleSearch('f', 'English', 0, 2020);
-SELECT count(*)
-FROM volumes
-GROUP BY book_id;
-
-# WYPOŻYCZANIE KSIĄŻEK
 DROP PROCEDURE IF EXISTS RentBook;
 CREATE PROCEDURE RentBook(cust_barc INT(8), vol_barc INT(8))
   BEGIN
@@ -113,18 +14,15 @@ CREATE PROCEDURE RentBook(cust_barc INT(8), vol_barc INT(8))
     VALUES (@customer_id, @volume_id, curdate(), ADDDATE(curdate(), 30), NULL);
     COMMIT;
   END;
-CALL RentBook(1, 1);
-SELECT *
-FROM loans;
 
-# ODDAWANIE KSIĄŻEK
+
 DROP PROCEDURE IF EXISTS ReturnBook;
-CREATE PROCEDURE ReturnBook(volume_barcode INT(8))
+CREATE PROCEDURE ReturnBook(vol_barc INT(8))
   BEGIN
     # pobieramy id
     SELECT @volume_id := volume_id
     FROM volumes
-    WHERE barcode = volume_barcode;
+    WHERE barcode = vol_barc;
     # zwracamy książkę
     UPDATE loans
     SET return_date = curdate()
@@ -132,17 +30,13 @@ CREATE PROCEDURE ReturnBook(volume_barcode INT(8))
     COMMIT;
   END;
 
-CALL ReturnBook(2);
-SELECT *
-FROM loans;
 
-# DODAWANIE KSIĄŻKI
 DROP PROCEDURE IF EXISTS AddBook;
 CREATE PROCEDURE AddBook(a1 VARCHAR(50), a2 VARCHAR(50), t VARCHAR(100), t_o VARCHAR(100), l VARCHAR(20),
                          i  INT, p_y INT, p VARCHAR(50), c VARCHAR(20))
   BEGIN
     SELECT @a_id := author_id
-    FROM authors
+    FROM AUTHORS
     WHERE first_name LIKE a1 AND last_name LIKE a2;
     SELECT @p_id := publisher_id
     FROM publishers
@@ -151,12 +45,12 @@ CREATE PROCEDURE AddBook(a1 VARCHAR(50), a2 VARCHAR(50), t VARCHAR(100), t_o VAR
     FROM classifications
     WHERE description LIKE c;
     INSERT INTO books
-    (author_id, title, title_original, language, isbn, publish_year, publisher_id, classification_id)
+    (author_id, title, title_original, LANGUAGE, isbn, publish_year, publisher_id, classification_id)
     VALUES (@a_id, t, t_o, l, i, p_y, @p_id, @c_id);
     COMMIT;
   END;
 
-# DODAWANIE GENRE DO KSIĄŻKI
+
 DROP PROCEDURE IF EXISTS AddGenreToBook;
 CREATE PROCEDURE AddGenreToBook(i INT, g VARCHAR(20))
   BEGIN
@@ -174,9 +68,8 @@ CREATE PROCEDURE AddGenreToBook(i INT, g VARCHAR(20))
     VALUES (@b_id, @g_id);
     COMMIT;
   END;
-# CALL AddGenreToBook(2, 'detective novel'); # WYKONYWANE W PĘTLI DLA KAŻDEGO WYBRANEGO GENRE
 
-# ADD VOLUME
+
 DROP PROCEDURE IF EXISTS AddVolume;
 CREATE PROCEDURE AddVolume(volume_barcode INT, i INT)
   BEGIN
@@ -187,39 +80,3 @@ CREATE PROCEDURE AddVolume(volume_barcode INT, i INT)
     COMMIT;
   END;
 
-# CALL AddVolume(32, 1);
-
-
-
-# MOST POPULAR
-# DROP PROCEDURE IF EXISTS PopularBook;
-# CREATE PROCEDURE PopularBook(a1 VARCHAR(50), a2 VARCHAR(50), g VARCHAR(20), d DATE) # <- POPR.
-#   # authors name, surname , genre, date
-#   BEGIN
-#     # to get ID
-#     SELECT @genre_id := genre_id
-#     FROM genres
-#     WHERE genre LIKE g;
-#
-#     SELECT @author_id := author_id
-#     FROM authors
-#     WHERE (first_name LIKE a1 OR first_name LIKE a2)
-#           OR (last_name LIKE a1 OR last_name LIKE a2);
-#
-#     SELECT
-#       title,
-#       COUNT(volume_id) loaned
-#     FROM books
-#       JOIN volumes USING (book_id)
-#       JOIN loans USING (volume_id)
-#       #       JOIN authors USING (author_id)
-#       JOIN book_genres ON books.book_id = book_genres.book_id
-#     WHERE loan_date > d AND author_id = @author_id AND genre_id = @genre_id
-#     GROUP BY books.book_id
-#     ORDER BY loaned DESC
-#     LIMIT 10;
-#
-#     COMMIT;
-#   END;
-
-# CALL PopularBook('Isaac', 'Asimov', 'science fiction', '2000-1-1')

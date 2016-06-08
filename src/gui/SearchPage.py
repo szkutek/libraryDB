@@ -18,7 +18,7 @@ class SearchPage(Gtk.Box):
         self.set_homogeneous(True)
 
         self.simpleSearch = SimpleSearch(self.library)
-        self.advSearch = AdvancedSearch()
+        self.advSearch = AdvancedSearch(self.library)
         self.status = Status()
 
         self.searchBox = Gtk.VBox()

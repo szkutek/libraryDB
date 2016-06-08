@@ -8,16 +8,18 @@ from Status import Status
 
 
 class NewAndPopularPage(Gtk.Box):
-    def __init__(self):
+    def __init__(self, lib):
         Gtk.Box.__init__(self)
+
+        self.library = lib
 
         self.set_spacing(10)
         self.set_border_width(10)
 
         self.set_homogeneous(True)
 
-        self.newBooks = NewBooks()
-        self.popularBooks = PopularBooks()
+        self.newBooks = NewBooks(self.library)
+        self.popularBooks = PopularBooks(self.library)
         self.status = Status()
 
         self.newAndPopBox = Gtk.VBox()
@@ -26,4 +28,3 @@ class NewAndPopularPage(Gtk.Box):
         self.newAndPopBox.add(self.popularBooks)
 
         self.add(self.status)
-
