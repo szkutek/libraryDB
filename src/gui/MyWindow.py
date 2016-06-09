@@ -18,7 +18,6 @@ class MyWindow(Gtk.Window):
 
         self.library = Library(dbC=DBConnector(user='root', password='root1234', database='library'))
 
-        # gui
         self.set_border_width(3)
 
         self.notebook = Gtk.Notebook()
@@ -58,18 +57,6 @@ class MyWindow(Gtk.Window):
         self.newAndPop.set_border_width(10)
         self.newAndPop.add(self.newAndPopular)
         self.notebook.append_page(self.newAndPop, Gtk.Label('New and popular books'))
-
-        # def run(self, x):
-        #     cursor = self.library.query.advanced(parameters=('asi', 'asi', 'found', 1970, 's', '12345'))
-        #     result = "Executed query: {query}\nResult:\n"
-        #     for (author, title, publish_year, language, publisher, available) in cursor:
-        #         result += (
-        #             str(author) + ',' + str(title) + ',' + str(publish_year) + ',' + str(language) + ',' + str(
-        #                 publisher) + ',' + str(available))
-        #     buff = self.addPg.status.textView.get_buffer()
-        #     buff.set_text(result)
-
-        # self.library
 
 
 win = MyWindow()

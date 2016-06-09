@@ -5,10 +5,11 @@ from gi.repository import Gtk
 
 
 class AdvancedSearch(Gtk.Box):
-    def __init__(self, lib):
+    def __init__(self, lib, stat):
         Gtk.Box.__init__(self)
 
         self.library = lib
+        self.status = stat
 
         self.set_spacing(10)
         self.set_border_width(10)
@@ -70,7 +71,7 @@ class AdvancedSearch(Gtk.Box):
         self.valuesBox.add(self.authorBox)
         self.authorBox.pack_start(self.authorName, False, False, 0)
         self.authorBox.pack_start(self.authorSurname, False, False, 0)
-        
+
         self.valuesBox.pack_start(self.title, False, False, 0)
         self.valuesBox.pack_start(self.isbn, False, False, 0)
         self.valuesBox.pack_start(self.publisher, False, False, 0)
@@ -93,3 +94,9 @@ class AdvancedSearch(Gtk.Box):
 
         results = self.library.query.advanced(parameters=(authorName, authorSurname, title, publishYear,
                                                           publisher, isbn, classification, genre, language))
+        res = ""
+        for k in results:
+            res += k + '\n'
+
+        self.status.append('Advanced search results:')
+        self.status.append(res)

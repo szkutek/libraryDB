@@ -5,13 +5,14 @@ from gi.repository import Gtk
 
 
 class SimpleSearch(Gtk.Box):
-    def __init__(self, lib):
+    def __init__(self, lib, stat):
         Gtk.Box.__init__(self)
 
         self.set_spacing(10)
         self.set_border_width(10)
 
         self.library = lib
+        self.status = stat
 
         self.label = Gtk.Label("SIMPLE SEARCH")
         self.label2 = Gtk.Label(" ")
@@ -59,5 +60,10 @@ class SimpleSearch(Gtk.Box):
         publishYear2 = int(self.publishYear2.get_text())
         query = str(self.simpleSearch.get_text())
         queries = query.split(' ')
-        # print(queries)
         results = self.library.query.simple(parameters=(queries, language, publishYear1, publishYear2))
+
+        res = ""
+        for k in results:
+            res += k + '\n'
+        self.status.append('Simple search results:')
+        self.status.append(res)

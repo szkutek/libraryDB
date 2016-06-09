@@ -1,18 +1,15 @@
 DROP PROCEDURE IF EXISTS RentBook;
 CREATE PROCEDURE RentBook(cust_barc INT(8), vol_barc INT(8))
   BEGIN
-    # potrzebujemy id
     SET @customer_id := (SELECT customer_id
                          FROM customers
                          WHERE customer_barcode = cust_barc);
-    # pobieramy id
     SET @volume_id := (SELECT volumes.volume_id
                        FROM volumes
                          JOIN available_volumes USING (volume_id)
                        WHERE barcode = vol_barc);
-    # wypożyczamy
-    INSERT INTO loans (customer_id, volume_id, loan_date, due_date, return_date)
-    VALUES (@customer_id, @volume_id, curdate(), ADDDATE(curdate(), 30), NULL);
+    INSERT INTO loans (customer_id, volume_id, loan_date, return_date)
+    VALUES (@customer_id, @volume_id, current_timestamp, NULL);
     COMMIT;
   END;
 
@@ -26,7 +23,7 @@ CREATE PROCEDURE ReturnBook(vol_barc INT(8))
                        WHERE barcode = vol_barc);
     # zwracamy książkę
     UPDATE loans
-    SET return_date = curdate()
+    SET return_date = current_timestamp
     WHERE volume_id = @volume_id;
     COMMIT;
   END;
@@ -77,7 +74,8 @@ CREATE PROCEDURE AddVolume(volume_barcode INT, i INT)
     SELECT @book_id := book_id
     FROM books
     WHERE isbn = i;
-    INSERT INTO volumes (barcode, book_id, acquired) VALUES (volume_barcode, @book_id, curdate());
+    INSERT INTO volumes (barcode, book_id, acquired)
+    VALUES (volume_barcode, @book_id, curdate());
     COMMIT;
   END;
 

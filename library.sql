@@ -50,15 +50,15 @@ CREATE TABLE genres (
 );
 
 CREATE TABLE books (
-  book_id           INT          NOT NULL AUTO_INCREMENT,
-  author_id         INT          NOT NULL,
-  title             VARCHAR(100) NOT NULL,
+  book_id           INT                                 NOT NULL AUTO_INCREMENT,
+  author_id         INT                                 NOT NULL,
+  title             VARCHAR(100)                        NOT NULL,
   title_original    VARCHAR(100),
-  language          ENUM ('Polish', 'English', 'German', 'Russian', 'Other'),
+  language          ENUM ('Polish', 'English', 'Other') NOT NULL,
   isbn              INT(13),
-  publish_year      INT(4)       NOT NULL,
-  publisher_id      INT          NOT NULL,
-  classification_id INT          NOT NULL,
+  publish_year      INT(4)                              NOT NULL,
+  publisher_id      INT                                 NOT NULL,
+  classification_id INT                                 NOT NULL,
   PRIMARY KEY (book_id),
   FOREIGN KEY (author_id) REFERENCES authors (author_id),
   FOREIGN KEY (publisher_id) REFERENCES publishers (publisher_id),
@@ -88,19 +88,17 @@ CREATE TABLE book_genres (
 );
 
 CREATE TABLE loans (
-  loan_id     INT  NOT NULL AUTO_INCREMENT,
-  customer_id INT  NOT NULL,
-  volume_id   INT  NOT NULL,
-  loan_date   DATE NOT NULL,
-  due_date    DATE NOT NULL,
-  return_date DATE,
+  loan_id     INT      NOT NULL AUTO_INCREMENT,
+  customer_id INT      NOT NULL,
+  volume_id   INT      NOT NULL,
+  loan_date   DATETIME NOT NULL,
+  return_date DATETIME,
   PRIMARY KEY (loan_id),
   FOREIGN KEY (customer_id) REFERENCES customers (customer_id)
     ON DELETE CASCADE,
   FOREIGN KEY (volume_id) REFERENCES volumes (volume_id)
     ON DELETE CASCADE
 );
-
 
 CREATE OR REPLACE VIEW available_volumes AS
   SELECT
@@ -112,10 +110,11 @@ CREATE OR REPLACE VIEW available_volumes AS
                       FROM loans)
     OR volume_id IN (SELECT volume_id
                      FROM loans
-                     WHERE return_date IS NOT NULL)
+                     GROUP BY volume_id
+                     HAVING max(loan_date) < max(return_date))
   ORDER BY book_id;
 
-
+#
 INSERT INTO classifications (description) VALUES ('fiction');
 INSERT INTO genres (genre) VALUES ('fantasy'), ('science fiction'), ('detective novel');
 INSERT INTO authors (first_name, last_name) VALUES ('Isaac', 'Asimov'), ('Arthur Conan', 'Doyle');
@@ -131,13 +130,10 @@ INSERT INTO volumes (barcode, book_id, acquired) VALUES
   (1, '1', '1960-1-1'), (2, '1', '2000-1-1'), (3, '1', '1990-1-1'),
   (4, '2', '1960-1-1'), (5, '2', '2000-1-1'), (6, '2', '1990-1-1'),
   (7, '2', '1960-1-1'), (8, '3', '2000-1-1'), (9, '3', '1990-1-1');
-INSERT INTO loans (customer_id, volume_id, loan_date, due_date, return_date)
-VALUES ('1', '1', curdate(), ADDDATE(curdate(), 31), NULL),
-  ('1', '3', '2016-3-4', ADDDATE('2016-3-4', 30), '2016-4-30'),
-  ('1', '9', '2016-4-4', ADDDATE('2016-4-4', 30), NULL);
-#
-SELECT *
-FROM authors;
-#
-# SELECT *
-# FROM loans;
+INSERT INTO loans (customer_id, volume_id, loan_date, return_date)
+VALUES ('1', '1', current_timestamp(), NULL),
+  ('1', '3', '2016-3-4', '2016-4-30'),
+  ('1', '9', '2016-4-4', NULL),
+  ('1', '3', '2000-1-1', '2001-1-1'),
+  ('1', '3', current_timestamp, NULL),
+  ('1', '1', '2016-1-1', CURRENT_TIMESTAMP);

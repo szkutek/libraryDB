@@ -25,9 +25,7 @@ class Status(Gtk.ScrolledWindow):
         textBuffer = self.textView.get_buffer()
         # textBuffer.set_text("STATUS")
         end_iter = textBuffer.get_end_iter()
-        textBuffer.insert(end_iter, text)
-
-    def showResults(self, text):
-        textBuffer = self.textView.get_buffer()
-        textBuffer.set_text("Results:\n")
-        textBuffer.set_text(text)
+        textBuffer.insert(end_iter,
+                          "---------------------------------------------------------------------------------------\n")
+        end_iter = textBuffer.get_end_iter()
+        textBuffer.insert(end_iter, text + '\n')

@@ -16,7 +16,6 @@ class Query:
             for k in res:
                 for x in k.fetchall():
                     tmp = str(x[0]) + ';' + str(x[1]) + ';' + str(x[2]) + ';' + str(x[3])
-                    print(tmp)
                     results.add(tmp)
         return results
 

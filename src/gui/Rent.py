@@ -48,7 +48,7 @@ class Rent(Gtk.Box):
     def rentBook(self, button):
         customerBarcode = int(self.customerBarcode.get_text())
         volumeBarcode = int(self.volumeBarcode.get_text())
-        self.library.loans.rentBook(parameters=(customerBarcode, volumeBarcode))
-
-        self.status.append('Rented book with barcode ' + str(volumeBarcode) + ' to customer with barcode ' + str(
-            customerBarcode) + '\n')
+        text = self.library.loans.rentBook(parameters=(customerBarcode, volumeBarcode))
+        self.status.append(text)
+        # self.status.append('Rented book with barcode ' + str(volumeBarcode) + ' to customer with barcode ' + str(
+        #     customerBarcode))

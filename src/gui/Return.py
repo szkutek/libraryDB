@@ -38,6 +38,6 @@ class Return(Gtk.Box):
 
     def returnBook(self, button):
         volumeBarcode = int(self.volumeBarcode.get_text())
-        self.library.loans.returnBook(parameters=(volumeBarcode,))
-
-        self.status.append('Returned book with barcode ' + str(volumeBarcode) + '\n')
+        text = self.library.loans.returnBook(parameters=(volumeBarcode,))
+        self.status.append(text)
+        # self.status.append('Returned book with barcode ' + str(volumeBarcode) + '\n')
