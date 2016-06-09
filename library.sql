@@ -118,9 +118,10 @@ CREATE OR REPLACE VIEW available_volumes AS
 INSERT INTO classifications (description) VALUES ('fiction');
 INSERT INTO genres (genre) VALUES ('fantasy'), ('science fiction'), ('detective novel');
 INSERT INTO authors (first_name, last_name) VALUES ('Isaac', 'Asimov'), ('Arthur Conan', 'Doyle');
-INSERT INTO publishers (publisher, address) VALUES ('Something', 'New York, USA');
+INSERT INTO publishers (publisher, address) VALUES ('Something', 'New York, USA'), ('PWN', 'Wroclaw, Polska');
 INSERT INTO customers (customer_barcode, name, birth_date, address, phone_no, email, registration_date)
-VALUES ('1', 'Agnieszka Szkutek', '1994-08-04', 'bla, bla', '1234', 'email', curdate());
+VALUES ('1', 'Agnieszka Szkutek', '1994-08-04', 'bla, bla', '1234', 'email', curdate()),
+  ('2', 'Kaczor Donald', '2000-01-04', 'bla, bla', '304823409', 'kaczor@donald', curdate());
 INSERT INTO books (author_id, title, title_original, language, isbn, publish_year, publisher_id, classification_id)
 VALUES ('1', 'Robots', '', 'English', '1234', '1951', '1', '1'),
   ('1', 'Foundation', '', 'English', '12345', '1970', '1', '1'),
@@ -130,10 +131,15 @@ INSERT INTO volumes (barcode, book_id, acquired) VALUES
   (1, '1', '1960-1-1'), (2, '1', '2000-1-1'), (3, '1', '1990-1-1'),
   (4, '2', '1960-1-1'), (5, '2', '2000-1-1'), (6, '2', '1990-1-1'),
   (7, '2', '1960-1-1'), (8, '3', '2000-1-1'), (9, '3', '1990-1-1');
-INSERT INTO loans (customer_id, volume_id, loan_date, return_date)
-VALUES ('1', '1', current_timestamp(), NULL),
-  ('1', '3', '2016-3-4', '2016-4-30'),
-  ('1', '9', '2016-4-4', NULL),
-  ('1', '3', '2000-1-1', '2001-1-1'),
-  ('1', '3', current_timestamp, NULL),
-  ('1', '1', '2016-1-1', CURRENT_TIMESTAMP);
+# INSERT INTO loans (customer_id, volume_id, loan_date, return_date)
+# VALUES ('1', '1', current_timestamp(), NULL),
+#   ('1', '3', '2016-3-4', '2016-4-30'),
+#   ('1', '9', '2016-4-4', NULL),
+#   ('1', '3', '2000-1-1', '2001-1-1'),
+#   ('1', '3', current_timestamp, NULL),
+#   ('1', '1', '2016-1-1', CURRENT_TIMESTAMP);
+
+#  DO ZROBIENIA:
+# 1. 2 użytkowników z różnymi poziomami uprawnień
+
+CALL PopularBooks('I', 'A', 'science fiction', '0-1-1');

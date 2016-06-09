@@ -5,10 +5,11 @@ from gi.repository import Gtk
 
 
 class NewBooks(Gtk.Box):
-    def __init__(self, lib):
+    def __init__(self, lib, stat):
         Gtk.Box.__init__(self)
 
         self.library = lib
+        self.status = stat
 
         self.set_spacing(10)
         self.set_border_width(10)
@@ -57,4 +58,10 @@ class NewBooks(Gtk.Box):
         publishedYear = int(self.publishedYear.get_text())
         addedYear = int(self.addedYear.get_text())
 
-        self.library.query.newBooks(parameters=(genre, language, publishedYear, addedYear))
+        results = self.library.query.newBooks(parameters=(genre, language, publishedYear, addedYear))
+
+        res = ""
+        for k in results:
+            res += k + '\n'
+        self.status.append('New books:\n (author, title, publish year, genres)')
+        self.status.append(res)

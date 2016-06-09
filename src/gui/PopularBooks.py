@@ -5,10 +5,11 @@ from gi.repository import Gtk
 
 
 class PopularBooks(Gtk.Box):
-    def __init__(self, lib):
+    def __init__(self, lib, stat):
         Gtk.Box.__init__(self)
 
         self.library = lib
+        self.status = stat
 
         self.set_spacing(10)
         self.set_border_width(10)
@@ -61,4 +62,10 @@ class PopularBooks(Gtk.Box):
         genre = str(self.genre.get_text())
         popularSince = str(self.popularSince.get_text())
 
-        self.library.query.popularBooks(parameters=(authorName, authorSurname, genre, popularSince))
+        results = self.library.query.popularBooks(parameters=(authorName, authorSurname, genre, popularSince))
+
+        res = ""
+        for k in results:
+            res += k + '\n'
+        self.status.append('Popular books:\n (author, title, x times rented)')
+        self.status.append(res)

@@ -12,15 +12,15 @@ class NewAndPopularPage(Gtk.Box):
         Gtk.Box.__init__(self)
 
         self.library = lib
+        self.status = Status()
 
         self.set_spacing(10)
         self.set_border_width(10)
 
         self.set_homogeneous(True)
 
-        self.newBooks = NewBooks(self.library)
-        self.popularBooks = PopularBooks(self.library)
-        self.status = Status()
+        self.newBooks = NewBooks(self.library, self.status)
+        self.popularBooks = PopularBooks(self.library, self.status)
 
         self.newAndPopBox = Gtk.VBox()
         self.add(self.newAndPopBox)
