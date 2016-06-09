@@ -23,7 +23,8 @@ CREATE TABLE authors (
   author_id  INT         NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(50) NOT NULL,
   last_name  VARCHAR(50) NOT NULL,
-  PRIMARY KEY (author_id)
+  PRIMARY KEY (author_id),
+  UNIQUE KEY (first_name, last_name)
 );
 
 CREATE TABLE publishers (
@@ -71,6 +72,7 @@ CREATE TABLE volumes (
   book_id   INT NOT NULL,
   acquired  DATE,
   PRIMARY KEY (volume_id),
+  UNIQUE KEY (barcode),
   FOREIGN KEY (book_id) REFERENCES books (book_id)
     ON DELETE CASCADE
 );
@@ -108,7 +110,7 @@ CREATE OR REPLACE VIEW available_volumes AS
   WHERE
     volume_id NOT IN (SELECT volume_id
                       FROM loans)
-    OR volume_id IN (SELECT volume_id AS ID_available
+    OR volume_id IN (SELECT volume_id
                      FROM loans
                      WHERE return_date IS NOT NULL)
   ORDER BY book_id;
@@ -133,7 +135,9 @@ INSERT INTO loans (customer_id, volume_id, loan_date, due_date, return_date)
 VALUES ('1', '1', curdate(), ADDDATE(curdate(), 31), NULL),
   ('1', '3', '2016-3-4', ADDDATE('2016-3-4', 30), '2016-4-30'),
   ('1', '9', '2016-4-4', ADDDATE('2016-4-4', 30), NULL);
-
-SELECT * FROM customers;
-
-SELECT * FROM loans;
+#
+SELECT *
+FROM authors;
+#
+# SELECT *
+# FROM loans;

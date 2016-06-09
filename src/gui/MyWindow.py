@@ -25,7 +25,6 @@ class MyWindow(Gtk.Window):
         self.add(self.notebook)
 
         self.addPg = AddPage(lib=self.library)
-        self.addPg.utilities.buttonAuthor.connect("clicked", self.run)
 
         self.addUtiPage = Gtk.Box()
         self.addUtiPage.set_border_width(10)
@@ -60,15 +59,15 @@ class MyWindow(Gtk.Window):
         self.newAndPop.add(self.newAndPopular)
         self.notebook.append_page(self.newAndPop, Gtk.Label('New and popular books'))
 
-    def run(self, x):
-        cursor = self.library.query.advanced(parameters=('asi', 'asi', 'found', 1970, 's', '12345'))
-        result = "Executed query: {query}\nResult:\n"
-        for (author, title, publish_year, language, publisher, available) in cursor:
-            result += (
-                str(author) + ',' + str(title) + ',' + str(publish_year) + ',' + str(language) + ',' + str(
-                    publisher) + ',' + str(available))
-        buff = self.addPg.status.textView.get_buffer()
-        buff.set_text(result)
+        # def run(self, x):
+        #     cursor = self.library.query.advanced(parameters=('asi', 'asi', 'found', 1970, 's', '12345'))
+        #     result = "Executed query: {query}\nResult:\n"
+        #     for (author, title, publish_year, language, publisher, available) in cursor:
+        #         result += (
+        #             str(author) + ',' + str(title) + ',' + str(publish_year) + ',' + str(language) + ',' + str(
+        #                 publisher) + ',' + str(available))
+        #     buff = self.addPg.status.textView.get_buffer()
+        #     buff.set_text(result)
 
         # self.library
 

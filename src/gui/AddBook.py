@@ -5,12 +5,14 @@ from gi.repository import Gtk
 
 
 class AddBook(Gtk.Box):
-    def __init__(self, lib):
+    def __init__(self, lib, stat):
         Gtk.Box.__init__(self)
-        self.library = lib
         # self.set_orientation(Gtk.Orientation.VERTICAL)
         self.set_spacing(10)
         self.set_border_width(10)
+
+        self.library = lib
+        self.status = stat
 
         self.label = Gtk.Label("ADD A NEW BOOK")
         self.label2 = Gtk.Label(" ")
@@ -98,7 +100,10 @@ class AddBook(Gtk.Box):
         for i in genres:
             self.library.add.genreToBook(parameters=(isbn, i))
 
-        # print("Added: " +
-        #       author[0] + ", " + author[1]
-        #       + ", " + title + ", " + orig_title + ", " + language + ", " + isbn + ", " + publisher + ", " +
-        #       str(year) + ", " + classification)
+        self.status.append(
+            'Added new book:\n' +
+            '(author, title, original title, language, isbn, publisher, year, classification) \n')
+        self.status.append(author[0] + ' ' + author[1]
+                           + '; ' + title + '; ' + orig_title + '; ' + language + '; ' + str(isbn) + '; '
+                           + publisher + '; ' + str(year) + '; ' + classification + '\n')
+        self.status.append('With genres: ' + genre + '\n')

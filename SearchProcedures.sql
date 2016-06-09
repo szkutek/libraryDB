@@ -49,17 +49,15 @@ CREATE PROCEDURE SimpleSearch(w VARCHAR(20))
   END;
 
 # ADVANCED SEARCH
-# SET @author = 'isaac', @title = 'found', @publish_year = 1970, @publisher = 's', @isbn = '12345';
 DROP PROCEDURE IF EXISTS AdvancedSearch;
 CREATE PROCEDURE AdvancedSearch(a1  VARCHAR(50), a2 VARCHAR(50), t VARCHAR(100),
                                 p_y INT, p VARCHAR(50), i INT,
                                 c   VARCHAR(20), g VARCHAR(20), l VARCHAR(20))
   #   authorName, authorSurname, title, publishYear, publisher, isbn, classification, genre, language
   BEGIN
-    SELECT @g_id := genre_id
-    FROM genres
-    WHERE genre LIKE g;
-
+    SET @g_id := (SELECT genre_id
+                  FROM genres
+                  WHERE genre LIKE g);
     SELECT
       CONCAT_WS(', ', last_name, first_name) AS author,
       title,
@@ -87,4 +85,4 @@ CREATE PROCEDURE AdvancedSearch(a1  VARCHAR(50), a2 VARCHAR(50), t VARCHAR(100),
           AND language = l;
   END;
 
-# CALL AdvancedSearch('Isaac', 'a', 'o', 1970, 's', 12345, 'fiction', 'science fiction', 'English');
+# CALL AdvancedSearch('i', 'a', 'o', 1970, 's', 12345, 'fiction', 'science fiction', 'English');

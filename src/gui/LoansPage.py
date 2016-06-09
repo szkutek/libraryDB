@@ -17,9 +17,10 @@ class LoansPage(Gtk.VBox):
 
         self.set_homogeneous(True)
 
-        self.rents = Rent(self.library)
-        self.returns = Return(self.library)
         self.status = Status()
+
+        self.rents = Rent(self.library, self.status)
+        self.returns = Return(self.library, self.status)
 
         self.loansBox = Gtk.Box()
         self.add(self.loansBox)

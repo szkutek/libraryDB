@@ -5,10 +5,11 @@ from gi.repository import Gtk
 
 
 class Register(Gtk.Box):
-    def __init__(self, lib):
+    def __init__(self, lib, stat):
         Gtk.Box.__init__(self)
 
         self.library = lib
+        self.status = stat
 
         self.set_spacing(10)
         self.set_border_width(10)
@@ -76,3 +77,7 @@ class Register(Gtk.Box):
         barcode = str(self.barcode.get_text())
 
         self.library.customer.register(parameters=(barcode, name, address, birthDate, phoneNo, email))
+
+        self.status.append('Registered customer\n (barcode, name, address, birthDate, phoneNo, email)\n'
+                           + str(barcode) + '; ' + name + '; ' + address + '; ' + birthDate + '; ' +
+                           str(phoneNo) + '; ' + email + '\n')

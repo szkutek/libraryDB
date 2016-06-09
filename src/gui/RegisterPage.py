@@ -17,9 +17,8 @@ class RegisterPage(Gtk.Box):
 
         self.set_homogeneous(True)
 
-        self.register = Register(self.library)
-        self.add(self.register)
-
         self.status = Status()
-        self.add(self.status)
+        self.register = Register(self.library, self.status)
 
+        self.add(self.register)
+        self.add(self.status)

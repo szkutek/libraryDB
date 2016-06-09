@@ -16,10 +16,11 @@ class AddPage(Gtk.Grid):
         self.set_row_spacing(5)
         self.set_column_spacing(20)
 
-        self.utilities = AddUtilities(self.library)
-        self.books = AddBook(self.library)
-        self.volumes = AddVolume(self.library)
         self.status = Status()
+
+        self.utilities = AddUtilities(self.library, self.status)
+        self.books = AddBook(self.library, self.status)
+        self.volumes = AddVolume(self.library, self.status)
 
         self.attach(self.books, 0, 0, 1, 1)
         self.attach(self.volumes, 0, 1, 1, 1)

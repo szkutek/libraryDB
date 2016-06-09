@@ -5,10 +5,11 @@ from gi.repository import Gtk
 
 
 class Rent(Gtk.Box):
-    def __init__(self, lib):
+    def __init__(self, lib, stat):
         Gtk.Box.__init__(self)
 
         self.library = lib
+        self.status = stat
 
         self.set_spacing(10)
         self.set_border_width(10)
@@ -48,3 +49,6 @@ class Rent(Gtk.Box):
         customerBarcode = int(self.customerBarcode.get_text())
         volumeBarcode = int(self.volumeBarcode.get_text())
         self.library.loans.rentBook(parameters=(customerBarcode, volumeBarcode))
+
+        self.status.append('Rented book with barcode ' + str(volumeBarcode) + ' to customer with barcode ' + str(
+            customerBarcode) + '\n')

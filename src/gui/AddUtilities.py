@@ -5,13 +5,14 @@ from gi.repository import Gtk
 
 
 class AddUtilities(Gtk.Box):
-    def __init__(self, lib):
+    def __init__(self, lib, stat):
         Gtk.Box.__init__(self)
         self.set_orientation(Gtk.Orientation.VERTICAL)
         self.set_spacing(10)
         self.set_border_width(10)
 
         self.library = lib
+        self.status = stat
 
         self.label = Gtk.Label("ADD NEW AUTHOR / PUBLISHER / GENRE / CLASSIFICATION")
 
@@ -79,16 +80,20 @@ class AddUtilities(Gtk.Box):
         authorName = str(self.authorName.get_text())
         authorSurname = str(self.authorSurname.get_text())
         self.library.add.author(parameters=(authorName, authorSurname))
+        self.status.append('Added new author: ' + authorName + ' ' + authorSurname + '\n')
 
     def addPublisher(self, button):
         publisherName = str(self.publisherName.get_text())
         publisherAddress = str(self.publisherAddress.get_text())
         self.library.add.publisher(parameters=(publisherName, publisherAddress))
+        self.status.append('Added new publisher: ' + publisherName + '; ' + publisherAddress + '\n')
 
     def addClass(self, button):
         className = str(self.className.get_text())
-        self.library.add.classification(parameters=className)
+        self.library.add.classification(parameters=(className,))
+        self.status.append('Added new classification: ' + className + '\n')
 
     def addGenre(self, button):
         genreName = str(self.genreName.get_text())
-        self.library.add.genre(parameters=genreName)
+        self.library.add.genre(parameters=(genreName,))
+        self.status.append('Added new genre: ' + genreName + '\n')

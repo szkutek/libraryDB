@@ -16,7 +16,18 @@ class Status(Gtk.ScrolledWindow):
         self.textView.set_wrap_mode(True)
 
         self.textView.set_justification(Gtk.Justification.LEFT)
-        self.textView.modify_bg(Gtk.StateType.NORMAL, Gdk.Color(65535, 65535, 65535))
+        self.textView.modify_bg(Gtk.StateType.NORMAL, Gdk.Color(45535, 45535, 45535))
         # self.set_size_request(-1, 250)
 
         self.add(self.textView)
+
+    def append(self, text):
+        textBuffer = self.textView.get_buffer()
+        # textBuffer.set_text("STATUS")
+        end_iter = textBuffer.get_end_iter()
+        textBuffer.insert(end_iter, text)
+
+    def showResults(self, text):
+        textBuffer = self.textView.get_buffer()
+        textBuffer.set_text("Results:\n")
+        textBuffer.set_text(text)

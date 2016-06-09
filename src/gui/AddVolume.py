@@ -5,12 +5,13 @@ from gi.repository import Gtk
 
 
 class AddVolume(Gtk.Box):
-    def __init__(self, lib):
+    def __init__(self, lib, stat):
         Gtk.Box.__init__(self)
         self.set_spacing(10)
         self.set_border_width(10)
 
         self.library = lib
+        self.status = stat
 
         self.label = Gtk.Label("ADD VOLUME")
         self.label2 = Gtk.Label(" ")
@@ -45,3 +46,5 @@ class AddVolume(Gtk.Box):
         volumeBarcode = int(self.volumeBarcode.get_text())
 
         self.library.add.volume(parameters=(volumeBarcode, isbn))
+
+        self.status.append('Added new volume to book with ISBN =' + str(isbn) + '\n')

@@ -5,13 +5,14 @@ from gi.repository import Gtk
 
 
 class Return(Gtk.Box):
-    def __init__(self, lib):
+    def __init__(self, lib, stat):
         Gtk.Box.__init__(self)
         self.set_spacing(10)
         self.set_border_width(10)
         # self.set_homogeneous(True)
 
         self.library = lib
+        self.status = stat
 
         self.label = Gtk.Label("RETURN")
         self.label2 = Gtk.Label(" ")
@@ -38,3 +39,5 @@ class Return(Gtk.Box):
     def returnBook(self, button):
         volumeBarcode = int(self.volumeBarcode.get_text())
         self.library.loans.returnBook(parameters=(volumeBarcode,))
+
+        self.status.append('Returned book with barcode ' + str(volumeBarcode) + '\n')
